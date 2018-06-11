@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Azure Database Migration Services Demo</h1>
+    <p class="lead">Demo app to show minimal downtime migrations using Azure Database Migration Service</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>MySQL Demo</h2>
+        <p> Demo app connected to a MySQL database. </p>
+        <p><a class="btn btn-default" href="/mysqllogin">Launch App &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>PostgreSQL Demo</h2>
+        <p>Demo app connected to a PostgreSQL database. </p>
+        <p><a class="btn btn-default" href="/pgsqllogin">Launch App &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

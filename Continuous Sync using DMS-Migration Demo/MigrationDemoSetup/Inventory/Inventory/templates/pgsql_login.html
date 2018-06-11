@@ -1,0 +1,23 @@
+﻿{% extends "layout.html" %}
+{% block title %}Azure DMS Demo{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<h3>PostgreSQL Connection Info</h3>
+<form action="/pgsqllogin" method="POST">
+    <div class="form-group">
+        <label for="namefield">Host</label>
+        <input type="text" class="form-control" id="namefield" name="host" aria-describedby="emailHelp" placeholder="Host name. Example: localhost:3306">
+    </div>
+    <div class="form-group">
+        <label for="emailfield">User</label>
+        <input type="text" class="form-control" id="emailfield" name="user" aria-describedby="emailHelp" placeholder="Username">
+    </div>
+    <div class="form-group">
+        <label for="namefield">Password</label>
+        <input type="password" class="form-control" id="namefield" name="password" aria-describedby="emailHelp">
+    </div>
+    <button type="submit" class="btn btn-default">Connect</button>
+</form>
+{% endblock %}

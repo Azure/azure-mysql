@@ -1,0 +1,14 @@
+Console App
+
+To create orders - C:\BuildDemoSetup\InventoryConsole\CreateOrders.py
+
+To query orders - C:\BuildDemoSetup\InventoryConsole\QueryOrders.py
+
+Web App
+
+To launch the app - C:\BuildDemoSetup\Inventory\runserver.py
+
+Sql Scripts
+
+C:\BuildDemosetup\PostgreSql-CreateDatabase.sql
+C:\BuildDemosetup\PostgreSql-CreateTables.sql
