@@ -14,7 +14,7 @@
     "serverName": {
       "type": "string"
     },
-    "skuCapacityDTU": {
+    "skuCapacity": {
       "type": "int"
     },
     "skuFamily": {
@@ -31,11 +31,17 @@
     },
     "version": {
       "type": "string"
+    },
+    "backupRetentionDays": {
+      "type": "int"
+    },
+    "geoRedundantBackup": {
+      "type": "string"
     }
   },
   "resources": [
     {
-      "apiVersion": "2016-02-01-privatepreview",
+      "apiVersion": "2017-12-01-preview",
       "kind": "",
       "location": "[parameters('location')]",
       "name": "[parameters('serverName')]",
@@ -43,12 +49,16 @@
         "version": "[parameters('version')]",
         "administratorLogin": "[parameters('administratorLogin')]",
         "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
-        "storageMB": "[parameters('skuSizeMB')]"
+        "storageProfile": {
+          "storageMB": "[parameters('skuSizeMB')]",
+          "backupRetentionDays": "[parameters('backupRetentionDays')]",
+          "geoRedundantBackup": "[parameters('geoRedundantBackup')]"
+        }
       },
       "sku": {
         "name": "[parameters('skuName')]",
         "tier": "[parameters('skuTier')]",
-        "capacity": "[parameters('skuCapacityDTU')]",
+        "capacity": "[parameters('skuCapacity')]",
         "size": "[parameters('skuSizeMB')]",
         "family": "[parameters('skuFamily')]"
       },
