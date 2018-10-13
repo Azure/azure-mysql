@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "value": "adminuser"
+            "value": "pariks"
         },
         "administratorLoginPassword": {
-            "value": null
+            "value": "Evaluation1"
         },
         "serverName": {
-            "value": "your-server-name"
+            "value": "parikarm"
         },
         "location": {
-            "value": "southcentralus"
+            "value": "westus"
         },
         "skuName": {
             "value": "GP_Gen4_2"
@@ -39,10 +39,16 @@
             "value": "Disabled"
         },
         "virtualNetworkName": {
-	    "value": "your-vnet-name"
-	},
+	    "value": "pariks_my_vnet"
+    },
+    "vnetAddressPrefix": {
+	    "value": "10.0.0.0/16"
+    },
+    "subnetPrefix": {
+	    "value": "10.0.0.0/16"
+    },    
 	"subnetName": {
-	    "value": "your-subnet-name"
+	    "value": "pariks_mysql_subnet"
         },
         "virtualNetworkRuleName": {
 	    "value": "AllowSubnet"
