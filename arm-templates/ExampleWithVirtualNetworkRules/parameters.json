@@ -1,18 +1,18 @@
-{
+"{
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "value": "adminuser"
+            "value": "adminlogin"
         },
         "administratorLoginPassword": {
-            "value": null
+            "value": "adminpassword"
         },
         "serverName": {
-            "value": "your-server-name"
+            "value": "your_server_name"
         },
         "location": {
-            "value": "southcentralus"
+            "value": "location"
         },
         "skuName": {
             "value": "GP_Gen4_2"
@@ -39,10 +39,16 @@
             "value": "Disabled"
         },
         "virtualNetworkName": {
-	    "value": "your-vnet-name"
-	},
+	    "value": "your_vnet_name"
+    },
+    "vnetAddressPrefix": {
+	    "value": "10.0.0.0/16"
+    },
+    "subnetPrefix": {
+	    "value": "10.0.0.0/16"
+    },    
 	"subnetName": {
-	    "value": "your-subnet-name"
+	    "value": "your_subnet_name"
         },
         "virtualNetworkRuleName": {
 	    "value": "AllowSubnet"
