@@ -46,9 +46,43 @@
         },
         "virtualNetworkRuleName": {
 	     "type": "string"
-        }
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "subnetPrefix": {
+            "type": "string"
+           }
     },
     "resources": [
+        {
+            "apiVersion": "2018-06-01",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworkName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+              "addressSpace": {
+                "addressPrefixes": [
+                  "[parameters('vnetAddressPrefix')]"
+                ]
+              }
+            },
+            "resources": [
+              {
+                "apiVersion": "2018-06-01",
+                "type": "subnets",
+                "location": "[parameters('location')]",
+                "name": "[parameters('subnetName')]",
+                "dependsOn": [
+                  "[parameters('virtualNetworkName')]"
+                ],
+                "properties": {
+                  "addressPrefix": "[parameters('subnetPrefix')]"
+                }
+            }
+        ]
+    }, 
+        
         {
             "apiVersion": "2017-12-01",
             "kind": "",
