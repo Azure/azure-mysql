@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "value": "pariks"
+            "value": <adminlogin>
         },
         "administratorLoginPassword": {
-            "value": "Evaluation1"
+            "value": <adminpassword>
         },
         "serverName": {
-            "value": "parikarm"
+            "value": <servername>
         },
         "location": {
             "value": "westus"
@@ -39,7 +39,7 @@
             "value": "Disabled"
         },
         "virtualNetworkName": {
-	    "value": "pariks_my_vnet"
+	    "value": <vnetname>
     },
     "vnetAddressPrefix": {
 	    "value": "10.0.0.0/16"
@@ -48,7 +48,7 @@
 	    "value": "10.0.0.0/16"
     },    
 	"subnetName": {
-	    "value": "pariks_mysql_subnet"
+	    "value": <subnetname>
         },
         "virtualNetworkRuleName": {
 	    "value": "AllowSubnet"
