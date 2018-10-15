@@ -1,18 +1,18 @@
-{
+"{
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "value": <adminlogin>
+            "value": "adminlogin"
         },
         "administratorLoginPassword": {
-            "value": <adminpassword>
+            "value": "adminpassword"
         },
         "serverName": {
-            "value": <servername>
+            "value": "your_server_name"
         },
         "location": {
-            "value": "westus"
+            "value": "location"
         },
         "skuName": {
             "value": "GP_Gen4_2"
@@ -39,7 +39,7 @@
             "value": "Disabled"
         },
         "virtualNetworkName": {
-	    "value": <vnetname>
+	    "value": "your_vnet_name"
     },
     "vnetAddressPrefix": {
 	    "value": "10.0.0.0/16"
@@ -48,7 +48,7 @@
 	    "value": "10.0.0.0/16"
     },    
 	"subnetName": {
-	    "value": <subnetname>
+	    "value": "your_subnet_name"
         },
         "virtualNetworkRuleName": {
 	    "value": "AllowSubnet"
