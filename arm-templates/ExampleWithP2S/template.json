@@ -158,7 +158,7 @@
         "imageOffer": "UbuntuServer",
         "ubuntuOSVersion": "19.04",
         "nicName": "[concat(parameters('dnsLabelPrefix'), 'VMNic')]",
-        "mysqlServerName": "[concat(parameters('dnsLabelPrefix'), 'PG')]",
+        "mysqlServerName": "[concat(parameters('dnsLabelPrefix'), 'MYSQL')]",
         "virtualNetworkName": "[concat(parameters('dnsLabelPrefix'), 'VNET')]",
         "subnetName": "default",
         "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
