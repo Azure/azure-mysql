@@ -29,13 +29,13 @@ Once you have deployed the ARM Template **successfully without any errors**, you
 
 
 ```
-mysql "host={privateIPAddress} port=3306 dbname={your_database} user={your_username} sslmode=require"
+mysql --host={privateIPAddress} --port=3306 --database={your_database} --user={your_username} --ssl-mode=REQUIRED --password={your_password}
 ```
 
 Example : 
 
 ```
-mysql "host=10.3.0.5 port=3306 dbname=postgres user=mysqluser@p2sdemoMYSQL sslmode=require"
+mysql --host=10.3.0.5 --port=3306 --database=mysql --user=mysqluser@p2sdemoMYSQL --ssl-mode=REQUIRED --password=mypassword
 ```
 
 ## Contribution 

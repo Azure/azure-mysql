@@ -417,7 +417,7 @@
     "outputs": {
         "mysqlCommand": {
             "type": "string",
-            "value": "[concat('mysql --host=', parameters('privateIPAddress'), ' --port=3306 dbname=mysql --user=', parameters('mysqlUsername'), '@', variables('mysqlServerName'), ' --ssl-mode=REQUIRED' )]"
+            "value": "[concat('mysql --host=', parameters('privateIPAddress'), ' --port=3306 --database=mysql --user=', parameters('mysqlUsername'), '@', variables('mysqlServerName'), ' --ssl-mode=REQUIRED --password={your_password}' )]"
         }
     }
 }
