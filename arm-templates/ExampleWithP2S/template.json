@@ -415,9 +415,9 @@
         }
     ],
     "outputs": {
-        "psqlCommand": {
+        "mysqlCommand": {
             "type": "string",
-            "value": "[concat('psql \"host=', parameters('privateIPAddress'), ' port=5432 dbname=mysql user=', parameters('mysqlUsername'), '@', variables('mysqlServerName'), ' sslmode=require\"' )]"
+            "value": "[concat('mysql --host=', parameters('privateIPAddress'), ' --port=3306 dbname=mysql --user=', parameters('mysqlUsername'), '@', variables('mysqlServerName'), ' --ssl-mode=REQUIRED' )]"
         }
     }
 }
