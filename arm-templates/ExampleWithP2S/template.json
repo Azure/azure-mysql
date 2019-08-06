@@ -60,7 +60,7 @@
         },
         "version": {
             "type": "string",
-            "defaultValue": "10",
+            "defaultValue": "5.7",
             "metadata": {
                 "description": "MySQL Version"
             }
