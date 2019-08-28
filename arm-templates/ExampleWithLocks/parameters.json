@@ -27,7 +27,7 @@
             "value": "GeneralPurpose"
         },
         "version": {
-            "value": "10"
+            "value": "5.7"
         },
         "backupRetentionDays": {
             "value": 7
