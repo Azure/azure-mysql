@@ -450,7 +450,7 @@
                             ]
                         },
                         "protectedSettings": {
-                            "commandToExecute": "[concat('bash configure-proxySQL.sh \"', parameters('serverName'), '\" \"', parameters('MySQLUsername'), '\" \"', parameters('MySQLUserLoginPassword'), '\" \"',parameters('MonitoringUsername'), '\" \"',parameters('MonitoringUserLoginPassword'),'\"')]"
+                            "commandToExecute": "[concat('bash configure-proxySQL.sh \"', parameters('serverName'), '\" \"', parameters('MySQLUsername'), '\" \"', parameters('MySQLUserLoginPassword'), '\" \"',parameters('MonitoringUsername'), '\" \"',parameters('MonitoringUserLoginPassword'), '\" \"',parameters('administratorLogin'), '\" \"',parameters('administratorLoginPassword'),'\"')]"
                         }
                     }
         }

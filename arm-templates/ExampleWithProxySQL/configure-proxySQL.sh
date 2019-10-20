@@ -5,6 +5,8 @@ MySQLUSERNAME=$2
 MySQLUSERLOGINPASSWORD=$3
 MONITORINGUSERNAME=$4
 MONITORINGLOGINPASSWORD=$5
+ADMINISTRATORLOGIN=$6
+ADMINISTRATORLOGINPASSWORD=$7
 
 export DEBIAN_FRONTEND=noninteractive
 cd /tmp 
@@ -14,8 +16,8 @@ sudo apt-get update
 sudo apt-get install mysql-client​
 sudo systemctl start proxysql
 mysql –u admin –p admin -h127.0.0.1 -P6032
-insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(1,'$SERVERNAME.mysql.database.azure.com',3306,1,'Write Group');
-insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(2,'$SERVERNAME-1.mysql.database.azure.com',3306,1,'Read Group');
+insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(1,$SERVERNAME'.mysql.database.azure.com',3306,1,'Write Group');
+insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(2,$SERVERNAME'-1.mysql.database.azure.com',3306,1,'Read Group');
 UPDATE mysql_servers SET use_ssl=1 WHERE hostgroup_id=1; 
 UPDATE mysql_servers SET use_ssl=1 WHERE hostgroup_id=2; 
 insert into mysql_users(username,password,default_hostgroup,transaction_persistent)values($MySQLUSERNAME,$MySQLUSERLOGINPASSWORD,1,1);
@@ -33,3 +35,12 @@ save mysql servers to disk;
 save mysql query rules to disk; 
 save mysql variables to disk; 
 save admin variables to disk;
+
+mysql -h $SERVERNAME.mysql.database.azure.com -u $ADMINISTRATORLOGIN -p $ADMINISTRATORLOGINPASSWORD
+CREATE USER 'mydemouser'@'%' IDENTIFIED BY ' secretpassword'; 
+GRANT ALL PRIVILEGES ON *.* TO ' mydemouser'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+CREATE USER $MONITORINGUSERNAME@'%' IDENTIFIED BY 'secretpassword'; 
+GRANT SELECT ON *.* TO $MONITORINGUSERNAME@'%' WITH GRANT OPTION; 
+FLUSH PRIVILEGES; 
+exit
