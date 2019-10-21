@@ -13,9 +13,9 @@ cd /tmp
 curl -OL  https://github.com/sysown/proxysql/releases/download/v2.0.6/proxysql_2.0.6-ubuntu18_amd64.deb
 sudo dpkg -i proxysql_* 
 sudo apt-get update
-sudo apt-get install mysql-client​
+sudo apt-get install mysql-client
 sudo systemctl start proxysql
-mysql –u admin –p admin -h127.0.0.1 -P6032
+mysql -u admin -padmin -h 127.0.0.1 -P 6032
 insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(1,$SERVERNAME'.mysql.database.azure.com',3306,1,'Write Group');
 insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(2,$SERVERNAME'-1.mysql.database.azure.com',3306,1,'Read Group');
 UPDATE mysql_servers SET use_ssl=1 WHERE hostgroup_id=1; 
@@ -35,12 +35,12 @@ save mysql servers to disk;
 save mysql query rules to disk; 
 save mysql variables to disk; 
 save admin variables to disk;
-
-mysql -h $SERVERNAME.mysql.database.azure.com -u $ADMINISTRATORLOGIN -p $ADMINISTRATORLOGINPASSWORD
-CREATE USER 'mydemouser'@'%' IDENTIFIED BY ' secretpassword'; 
-GRANT ALL PRIVILEGES ON *.* TO ' mydemouser'@'%' WITH GRANT OPTION;
+exit
+mysql -h $SERVERNAME.mysql.database.azure.com -u $ADMINISTRATORLOGIN'@'$SERVERNAME -p $ADMINISTRATORLOGINPASSWORD
+CREATE USER $MySQLUSERNAME@'%' IDENTIFIED BY $MySQLUSERLOGINPASSWORD; 
+GRANT ALL PRIVILEGES ON *.* TO $MySQLUSERNAME@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-CREATE USER $MONITORINGUSERNAME@'%' IDENTIFIED BY 'secretpassword'; 
+CREATE USER $MONITORINGUSERNAME@'%' IDENTIFIED BY $MONITORINGLOGINPASSWORD; 
 GRANT SELECT ON *.* TO $MONITORINGUSERNAME@'%' WITH GRANT OPTION; 
 FLUSH PRIVILEGES; 
 exit
