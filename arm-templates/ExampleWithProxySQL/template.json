@@ -351,7 +351,33 @@
                         "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
                     }
                 }
-            }
+            },
+            "resources": [
+                {
+                    "type": "extensions",
+                    "name": "CustomScriptExtension",
+                    "apiVersion": "2019-10-20",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.Azure.Extensions",
+                        "type": "CustomScript",
+                        "typeHandlerVersion": "2.0",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
+                            "fileUris": [
+                                "[concat(variables('scriptsUri'), 'configure-proxySQL.sh')]",
+                                "[concat(variables('scriptsUri'), 'proxySQL.ini')]"
+                            ]
+                        },
+                        "protectedSettings": {
+                            "commandToExecute": "[concat('bash configure-proxySQL.sh \"', parameters('serverName'), '\" \"', parameters('MySQLUsername'), '\" \"', parameters('MySQLUserLoginPassword'), '\" \"',parameters('MonitoringUsername'), '\" \"',parameters('MonitoringUserLoginPassword'), '\" \"',parameters('administratorLogin'), '\" \"',parameters('administratorLoginPassword'),'\"')]"
+                        }
+                    }
+                 }
+            ]
         },
         {
             "apiVersion": "2017-05-10",
@@ -429,30 +455,6 @@
                     }
                 }
             }
-        },
-        {
-                    "type": "extensions",
-                    "name": "CustomScriptExtension",
-                    "apiVersion": "2019-10-20",
-                    "location": "[resourceGroup().location]",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
-                    ],
-                    "properties": {
-                        "publisher": "Microsoft.Azure.Extensions",
-                        "type": "CustomScript",
-                        "typeHandlerVersion": "2.0",
-                        "autoUpgradeMinorVersion": true,
-                        "settings": {
-                            "fileUris": [
-                                "[concat(variables('scriptsUri'), 'configure-proxySQL.sh')]",
-                                "[concat(variables('scriptsUri'), 'proxySQL.ini')]"
-                            ]
-                        },
-                        "protectedSettings": {
-                            "commandToExecute": "[concat('bash configure-proxySQL.sh \"', parameters('serverName'), '\" \"', parameters('MySQLUsername'), '\" \"', parameters('MySQLUserLoginPassword'), '\" \"',parameters('MonitoringUsername'), '\" \"',parameters('MonitoringUserLoginPassword'), '\" \"',parameters('administratorLogin'), '\" \"',parameters('administratorLoginPassword'),'\"')]"
-                        }
-                    }
         }
     ],
     "outputs": {
