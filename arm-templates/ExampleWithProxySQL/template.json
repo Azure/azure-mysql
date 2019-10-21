@@ -44,25 +44,11 @@
                 "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
             }
         },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for all resources."
-            }
-        },
         "serverName": {
             "type": "string",
             "defaultValue": "[uniqueString(resourceGroup().id)]",
             "metadata": {
                 "description": "Server name for the MySQL PaaS instance and it's replicas (replicas will get a '-' attached to the end with the replica number)."
-            }
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for the MySQL PaaS components to be deployed."
             }
         },
         "administratorLogin": {
@@ -126,13 +112,6 @@
                 "description": "MySQL version for the MySQL Server instances to be deployed."
             }
         },
-        "enableAzureResources": {
-            "type": "bool",
-            "defaultValue": true,
-            "metadata": {
-                "description": "Enable Azure hosted resources to access the master instance."
-            }
-        },
         "backupRetentionDays": {
             "type": "int",
             "defaultValue": 7,
@@ -151,20 +130,6 @@
             ],
             "metadata": {
                 "description": "Enable or disable geo redundant backups."
-            }
-        },
-        "_artifactsLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "The base URI where artifacts required by this template are located including a trailing '/'"
-            },
-            "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mysql-paas-replication/"
-        },
-        "_artifactsLocationSasToken": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
             }
         },
 		"MySQLUsername": {
@@ -193,6 +158,10 @@
         }
     },
     "variables": {
+        "enableAzureResources": true,
+        "location":  "[resourceGroup().location]",
+        "_artifactsLocation": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mysql-paas-replication/",
+        "_artifactsLocationSasToken": "",
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'salinuxvm')]",
         "imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
@@ -218,8 +187,8 @@
             }
         },
         "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-        "nestedtemplateMySQL": "[uri(parameters('_artifactsLocation'), concat('nested/mysql.json', parameters('_artifactsLocationSasToken')))]",
-        "nestedtemplateMySQLReplica": "[uri(parameters('_artifactsLocation'), concat('nested/mysqlReplica.json', parameters('_artifactsLocationSasToken')))]",
+        "nestedtemplateMySQL": "[uri(variables('_artifactsLocation'), concat('nested/mysql.json', variables('_artifactsLocationSasToken')))]",
+        "nestedtemplateMySQLReplica": "[uri(variables('_artifactsLocation'), concat('nested/mysqlReplica.json', variables('_artifactsLocationSasToken')))]",
         "sourceServerId": "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]",
         "skuName": "[concat(if(equals(parameters('skuTier'),'GeneralPurpose'),'GP',if(equals(parameters('skuTier'),'Basic'),'B',if(equals(parameters('skuTier'),'MemoryOptimized'),'MO',''))),'_',parameters('skuFamily'),'_',parameters('vCPU'))]",
         "sku": {
@@ -248,7 +217,7 @@
                         "value": "[parameters('serverName')]"
                     },
                     "location": {
-                        "value": "[parameters('location')]"
+                        "value": "[variables('location')]"
                     },
                     "version": {
                         "value": "[parameters('version')]"
@@ -266,7 +235,7 @@
                         "value": "[parameters('geoRedundantBackup')]"
                     },
                     "enableAzureResources": {
-                        "value": "[parameters('enableAzureResources')]"
+                        "value": "[variables('enableAzureResources')]"
                     },
                     "ServerId": {
                         "value": "[variables('sourceServerId')]"
@@ -294,7 +263,7 @@
                         "value": "[parameters('serverName')]"
                     },
                     "location": {
-                        "value": "[parameters('location')]"
+                        "value": "[variables('location')]"
                     },
                     "backupRetentionDays": {
                         "value": "[parameters('backupRetentionDays')]"
@@ -312,7 +281,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2018-11-01",
             "name": "[variables('storageAccountName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "sku": {
                 "name": "[variables('storageAccountType')]"
             },
@@ -323,7 +292,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2018-11-01",
             "name": "[variables('publicIPAddressName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
@@ -335,7 +304,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2018-11-01",
             "name": "[variables('virtualNetworkName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -356,7 +325,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2018-11-01",
             "name": "[variables('nicName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
@@ -382,7 +351,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2018-10-01",
             "name": "[variables('vmName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "MySQLServer",
                 "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",

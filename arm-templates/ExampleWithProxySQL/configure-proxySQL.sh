@@ -16,13 +16,13 @@ sudo apt-get update
 sudo apt-get install mysql-client
 sudo systemctl start proxysql
 mysql -u admin -padmin -h 127.0.0.1 -P 6032
-insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(1,$SERVERNAME'.mysql.database.azure.com',3306,1,'Write Group');
+insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(1,"$SERVERNAME.mysql.database.azure.com",3306,1,'Write Group');
 insert into mysql_servers(hostgroup_id,hostname,port,weight,comment) values(2,$SERVERNAME'-1.mysql.database.azure.com',3306,1,'Read Group');
 UPDATE mysql_servers SET use_ssl=1 WHERE hostgroup_id=1; 
 UPDATE mysql_servers SET use_ssl=1 WHERE hostgroup_id=2; 
-insert into mysql_users(username,password,default_hostgroup,transaction_persistent)values($MySQLUSERNAME,$MySQLUSERLOGINPASSWORD,1,1);
-set mysql-monitor_username=$MONITORINGUSERNAME; 
-set mysql-monitor_password=$MONITORINGLOGINPASSWORD;
+insert into mysql_users(username,password,default_hostgroup,transaction_persistent)values("$MySQLUSERNAME","$MySQLUSERLOGINPASSWORD",1,1);
+set mysql-monitor_username="$MONITORINGUSERNAME"; 
+set mysql-monitor_password="$MONITORINGLOGINPASSWORD";
 insert into mysql_query_rules(rule_id,active,match_digest,destination_hostgroup,apply)values(1,1,'^SELECT.*FOR UPDATE$',1,1); 
 insert into mysql_query_rules(rule_id,active,match_digest,destination_hostgroup,apply)values(2,1,'^SELECT',2,1);
 load mysql users to runtime; 
@@ -35,12 +35,10 @@ save mysql servers to disk;
 save mysql query rules to disk; 
 save mysql variables to disk; 
 save admin variables to disk;
-exit
-mysql -h $SERVERNAME.mysql.database.azure.com -u $ADMINISTRATORLOGIN'@'$SERVERNAME -p $ADMINISTRATORLOGINPASSWORD
-CREATE USER $MySQLUSERNAME@'%' IDENTIFIED BY $MySQLUSERLOGINPASSWORD; 
-GRANT ALL PRIVILEGES ON *.* TO $MySQLUSERNAME@'%' WITH GRANT OPTION;
+mysql -h "$SERVERNAME.mysql.database.azure.com" -u "$ADMINISTRATORLOGIN@$SERVERNAME" -p "$ADMINISTRATORLOGINPASSWORD"
+CREATE USER "$MySQLUSERNAME"@'%' IDENTIFIED BY "$MySQLUSERLOGINPASSWORD"; 
+GRANT ALL PRIVILEGES ON *.* TO "$MySQLUSERNAME"@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-CREATE USER $MONITORINGUSERNAME@'%' IDENTIFIED BY $MONITORINGLOGINPASSWORD; 
-GRANT SELECT ON *.* TO $MONITORINGUSERNAME@'%' WITH GRANT OPTION; 
+CREATE USER "$MONITORINGUSERNAME"@'%' IDENTIFIED BY "$MONITORINGLOGINPASSWORD"; 
+GRANT SELECT ON *.* TO "$MONITORINGUSERNAME"@'%' WITH GRANT OPTION; 
 FLUSH PRIVILEGES; 
-exit
