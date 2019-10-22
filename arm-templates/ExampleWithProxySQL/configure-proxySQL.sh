@@ -8,10 +8,10 @@ ADMINISTRATORLOGIN=$6
 ADMINISTRATORLOGINPASSWORD=$7
 export DEBIAN_FRONTEND=noninteractive
 cd /tmp 
-curl -OL  https://github.com/sysown/proxysql/releases/download/v2.0.6/proxysql_2.0.6-ubuntu18_amd64.deb
+wget https://github.com/sysown/proxysql/releases/download/v2.0.6/proxysql_2.0.6-ubuntu18_amd64.deb
 sudo dpkg -i proxysql_* 
-sudo apt-get update
-sudo apt-get install mysql-client
+sudo apt-get -y update
+sudo apt-get -y install mysql-client
 sudo systemctl start proxysql
 cp proxysqldb.sql /tmp/proxysqldb.sql
 sed -i -e "s/SERVERNAME/$SERVERNAME/g" -e "s/MONITORINGUSERNAME/$MONITORINGUSERNAME/g" -e "s/MONITORINGLOGINPASSWORD/$MONITORINGLOGINPASSWORD/g" /tmp/proxysqldb.sql
