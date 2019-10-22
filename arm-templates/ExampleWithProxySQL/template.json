@@ -422,7 +422,8 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('scriptsUri'), 'configure-proxySQL.sh')]",
-                                "[concat(variables('scriptsUri'), 'proxySQL.ini')]"
+                                "[concat(variables('scriptsUri'), 'proxysqldb.sql')]",
+                                "[concat(variables('scriptsUri'), 'masterdbdb.sql')]"
                             ]
                         },
                         "protectedSettings": {
