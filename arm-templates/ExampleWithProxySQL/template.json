@@ -174,7 +174,7 @@
         "publicIPAddressName": "myPublicIP",
         "publicIPAddressType": "Dynamic",
         "vmName": "MyUbuntuVM",
-        "vmSize": "Standard_LRS",
+        "vmSize": "Standard_DS1_v2",
         "scriptsUri": "[uri(deployment().properties.templateLink.uri, '.')]",
         "virtualNetworkName": "MyVNET",
         "linuxConfiguration": {
