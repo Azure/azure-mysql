@@ -44,25 +44,11 @@
                 "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
             }
         },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for all resources."
-            }
-        },
         "serverName": {
             "type": "string",
             "defaultValue": "[uniqueString(resourceGroup().id)]",
             "metadata": {
                 "description": "Server name for the MySQL PaaS instance and it's replicas (replicas will get a '-' attached to the end with the replica number)."
-            }
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for the MySQL PaaS components to be deployed."
             }
         },
         "administratorLogin": {
@@ -126,13 +112,6 @@
                 "description": "MySQL version for the MySQL Server instances to be deployed."
             }
         },
-        "enableAzureResources": {
-            "type": "bool",
-            "defaultValue": true,
-            "metadata": {
-                "description": "Enable Azure hosted resources to access the master instance."
-            }
-        },
         "backupRetentionDays": {
             "type": "int",
             "defaultValue": 7,
@@ -151,20 +130,6 @@
             ],
             "metadata": {
                 "description": "Enable or disable geo redundant backups."
-            }
-        },
-        "_artifactsLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "The base URI where artifacts required by this template are located including a trailing '/'"
-            },
-            "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mysql-paas-replication/"
-        },
-        "_artifactsLocationSasToken": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
             }
         },
 		"MySQLUsername": {
