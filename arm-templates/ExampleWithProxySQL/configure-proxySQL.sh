@@ -19,4 +19,3 @@ mysql -u admin -padmin -h 127.0.0.1 -P 6032 </tmp/proxysqldb.sql
 cp masterdb.sql /tmp/masterdb.sql
 sed -i -e "s/MySQLUSERNAME/$MySQLUSERNAME/g" -e "s/MySQLUSERLOGINPASSWORD/$MySQLUSERLOGINPASSWORD/g" -e "s/MONITORINGUSERNAME/$MONITORINGUSERNAME/g" -e "s/MONITORINGLOGINPASSWORD/$MONITORINGLOGINPASSWORD/g" /tmp/masterdb.sql
 mysql -h "$SERVERNAME.mysql.database.azure.com" -u "$ADMINISTRATORLOGIN@$SERVERNAME" -p"$ADMINISTRATORLOGINPASSWORD"</tmp/masterdb.sql
-
