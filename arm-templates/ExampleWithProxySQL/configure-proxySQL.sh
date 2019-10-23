@@ -12,6 +12,7 @@ sudo dpkg -i proxysql_*
 sudo apt-get -y update
 sudo apt-get -y install mysql-client
 sudo systemctl start proxysql
+sleep 100
 sed -i -e "s/SERVERNAME/$SERVERNAME/g" -e "s/MONITORINGUSERNAME/$MONITORINGUSERNAME/g" -e "s/MONITORINGLOGINPASSWORD/$MONITORINGLOGINPASSWORD/g" proxysqldb.sql
 mysql -u admin -padmin -h 127.0.0.1 -P 6032 <proxysqldb.sql
 sed -i -e "s/MySQLUSERNAME/$MySQLUSERNAME/g" -e "s/MySQLUSERLOGINPASSWORD/$MySQLUSERLOGINPASSWORD/g" -e "s/MONITORINGUSERNAME/$MONITORINGUSERNAME/g" -e "s/MONITORINGLOGINPASSWORD/$MONITORINGLOGINPASSWORD/g" masterdb.sql
