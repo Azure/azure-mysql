@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "value": "adminuser"
+            "value": null
         },
         "administratorLoginPassword": {
             "value": null
         },
         "location": {
-            "value": "West US"
+            "value": null
         },
         "serverName": {
-            "value": "your-server-name"
+            "value": null
         },
         "skuCapacity": {
             "value": 2
@@ -38,14 +38,21 @@
         "geoRedundantBackup": {
             "value": "Disabled"
         },
-        "firewallRuleName": {
-            "value": "AllowAll"
-        },
-        "firewallStartIpAddress": {
-            "value": "0.0.0.0"
-        },
-        "firewallEndIpAddress": {
-            "value": "255.255.255.255"
+        "firewallRules": {
+            "value": {
+                "properties": [
+                    {
+                        "name": "AllowRange",
+                        "startIpAddress": "128.0.0.0",
+                        "endIpAddress": "191.255.255.255"
+                    },
+                    {
+                        "name": "AllowOnlyOne",
+                        "startIpAddress": "255.255.255.255",
+                        "endIpAddress": "255.255.255.255"
+                    }
+                ]
+            }
         }
     }
 }
