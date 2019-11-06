@@ -1,0 +1,66 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "administratorLogin": {
+            "value": null
+        },
+        "administratorLoginPassword": {
+            "value": null
+        },
+        "location": {
+            "value": "westus2"
+        },
+        "serverName": {
+            "value": null
+        },
+        "skuCapacity": {
+            "value": 4
+        },
+        "skuFamily": {
+            "value": "Gen5"
+        },
+        "skuName": {
+            "value": "GP_Gen5_4"
+        },
+        "skuSizeMB": {
+            "value": 1048576
+        },
+        "skuTier": {
+            "value": "GeneralPurpose"
+        },
+        "version": {
+            "value": "5.7"
+        },
+        "backupRetentionDays": {
+            "value": 7
+        },
+        "geoRedundantBackup": {
+            "value": "Disabled"
+        },
+        "previewFeature": {
+            "value": "LargeStorage"
+        },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
+        "serverParameters": {
+            "value": {
+                "properties": [
+                    {
+                        "name": "log_bin_trust_function_creators",
+                        "value": "ON"
+                    },
+                    {
+                        "name": "slow_query_log",
+                        "value": "ON"
+                    },
+                    {
+                        "name": "long_query_time",
+                        "value": "5"
+                    }
+                ]
+            }
+        }
+    }
+}
