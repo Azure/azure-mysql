@@ -44,7 +44,7 @@
     },  
     "storageAutoGrow": {
       "type": "string",
-      "defaultValue": "Disabled"
+      "defaultValue": "Enabled"
     },
     "serverParameters": {
       "type": "object"
