@@ -7,7 +7,7 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This ARM template deploys [Azure Database for MySQL Server](https://docs.microsoft.com/azure/mysql/overview) and creates [Firewall Rule](https://docs.microsoft.com/azure/mysql/concepts-firewall-rules), [Virtual Network Rule](https://docs.microsoft.com/azure/mysql/concepts-data-access-and-security-vnet), Parameters, and Database. 
+This ARM template deploys [Azure Database for MySQL Server](https://docs.microsoft.com/azure/mysql/overview) and creates a [Firewall Rule](https://docs.microsoft.com/azure/mysql/concepts-firewall-rules), [Virtual Network Rule](https://docs.microsoft.com/azure/mysql/concepts-data-access-and-security-vnet), sets server parameters, and creates a database within the server. 
 
-**NOTE** : You can deploy Firewall rules, Virtual Network Rule, Parameters and Databases in any order in serial. However, they cannot be deployed in parallel. (In ARM template, when the deployment order is not specified, Resource Manager deploys them in parallel. 
+**NOTE** : You can deploy Firewall rules, Virtual Network Rule, server parameters and databases in any order serially. However, they cannot be deployed in parallel. (In ARM templates, when the deployment order is not specified, Resource Manager deploys them in parallel. 
 More information on how to specify the deployment order [here](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-define-dependencies).) 
