@@ -1,4 +1,4 @@
-# Azure Private Link for Azure Database for MySQL Single server
+# Azure Private Link for Azure Database for MySQL Server
 
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-mysql%2Fmaster%2Farm-templates%2FExampleWithPrivateLink%2FNewServerAndVnet%2Ftemplate.json" target="_blank">
@@ -68,6 +68,6 @@ Thank you!
 
 ## References 
 
-[Introducing Private Link for Azure Database for MySQL Single server](https://techcommunity.microsoft.com/t5/azure-database-for-mysql/introducing-private-link-for-azure-database-for-mysql/ba-p/1093244)
+[Introducing Private Link for Azure Database for MySQL Server](https://techcommunity.microsoft.com/t5/azure-database-for-mysql/introducing-private-link-for-azure-database-for-mysql/ba-p/1093244)
 
 
