@@ -27,7 +27,7 @@
                         "name": "MyConnection",
                         "properties": {
                             "privateLinkServiceId": "[parameters('mysqlServerResourceId')]",
-                            "groupIds": [ "postgresqlServer" ],
+                            "groupIds": [ "mysqlServer" ],
                             "requestMessage": ""
                         }
                     }
