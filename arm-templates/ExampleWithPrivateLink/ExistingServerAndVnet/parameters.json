@@ -5,7 +5,7 @@
         "privateEndpointName": {
             "value": "MyPrivateEndpoint"
         },
-		"postgreSqlServerResourceId": {
+		"mysqlServerResourceId": {
             "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.DBforMySQL/servers/mysqlserver"
         },
 		"subnetId": {

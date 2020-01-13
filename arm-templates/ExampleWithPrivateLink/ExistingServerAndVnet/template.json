@@ -5,7 +5,7 @@
 		"privateEndpointName": {
             "type": "string"
         },
-		"postgreSqlServerResourceId": {
+		"mysqlServerResourceId": {
             "type": "string"
         },
 		"subnetId": {
@@ -26,7 +26,7 @@
                     {
                         "name": "MyConnection",
                         "properties": {
-                            "privateLinkServiceId": "[parameters('postgreSqlServerResourceId')]",
+                            "privateLinkServiceId": "[parameters('mysqlServerResourceId')]",
                             "groupIds": [ "postgresqlServer" ],
                             "requestMessage": ""
                         }
