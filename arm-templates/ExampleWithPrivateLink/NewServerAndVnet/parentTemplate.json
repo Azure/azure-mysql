@@ -8,10 +8,10 @@
 		"vmPassword": {
             "type": "securestring"
         },
-        "pgUsername": {
+        "mysqlUsername": {
             "type": "string"
         },
-        "pgPassword": {
+        "mysqlPassword": {
              "type": "securestring"
         }
     },
@@ -34,11 +34,11 @@
                     "vmPassword":{
                         "value": "[parameters('vmPassword')]"
                     },
-                    "pgUsername":{
-                        "value": "[parameters('pgUsername')]"
+                    "mysqlUsername":{
+                        "value": "[parameters('mysqlUsername')]"
                     },
-                    "pgPassword":{
-                        "value": "[parameters('pgPassword')]"
+                    "mysqlPassword":{
+                        "value": "[parameters('mysqlPassword')]"
                     }
                 }
             }
