@@ -9,22 +9,22 @@
             "value": null
         },
         "location": {
-            "value": null
+            "value": "westus2"
         },
         "serverName": {
             "value": null
         },
         "skuCapacity": {
-            "value": 2
+            "value": 4
         },
         "skuFamily": {
             "value": "Gen5"
         },
         "skuName": {
-            "value": "GP_Gen5_2"
+            "value": "GP_Gen5_4"
         },
         "skuSizeMB": {
-            "value": 5120
+            "value": 1048576
         },
         "skuTier": {
             "value": "GeneralPurpose"
@@ -38,18 +38,26 @@
         "geoRedundantBackup": {
             "value": "Disabled"
         },
-        "firewallRules": {
+        "previewFeature": {
+            "value": "LargeStorage"
+        },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
+        "serverParameters": {
             "value": {
                 "properties": [
                     {
-                        "name": "AllowRange",
-                        "startIpAddress": "128.0.0.0",
-                        "endIpAddress": "191.255.255.255"
+                        "name": "log_bin_trust_function_creators",
+                        "value": "ON"
                     },
                     {
-                        "name": "AllowOnlyOne",
-                        "startIpAddress": "255.255.255.255",
-                        "endIpAddress": "255.255.255.255"
+                        "name": "slow_query_log",
+                        "value": "ON"
+                    },
+                    {
+                        "name": "long_query_time",
+                        "value": "5"
                     }
                 ]
             }

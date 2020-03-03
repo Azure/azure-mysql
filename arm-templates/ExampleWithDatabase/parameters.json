@@ -9,7 +9,7 @@
             "value": null
         },
         "location": {
-            "value": null
+            "value": "West US"
         },
         "serverName": {
             "value": null
@@ -38,18 +38,18 @@
         "geoRedundantBackup": {
             "value": "Disabled"
         },
-        "firewallRules": {
+        "databases": {
             "value": {
                 "properties": [
                     {
-                        "name": "AllowRange",
-                        "startIpAddress": "128.0.0.0",
-                        "endIpAddress": "191.255.255.255"
+                        "name": "sampledb1",
+                        "charset": "utf8",
+                        "collation": "utf8_general_ci"
                     },
                     {
-                        "name": "AllowOnlyOne",
-                        "startIpAddress": "255.255.255.255",
-                        "endIpAddress": "255.255.255.255"
+                        "name": "sampledb2",
+                        "charset": "ascii",
+                        "collation": "ascii_general_ci"
                     }
                 ]
             }

@@ -40,18 +40,35 @@
         },
         "firewallRules": {
             "value": {
-                "properties": [
+                "name": "AllowRange",
+                "startIpAddress": "128.0.0.0",
+                "endIpAddress": "191.255.255.255"
+            }
+        },
+        "virtualNetworkRules": {
+            "value": {
+                "name": "SampleRule",
+                "virtualNetworksExternalid": null,
+                "virtualNetworkSubnetId": null,
+                "ignoreMissingVnetServiceEndpoint": null
+            }
+        },
+        "serverParameters": {
+            "value": {
+                "parameters": [
                     {
-                        "name": "AllowRange",
-                        "startIpAddress": "128.0.0.0",
-                        "endIpAddress": "191.255.255.255"
-                    },
-                    {
-                        "name": "AllowOnlyOne",
-                        "startIpAddress": "255.255.255.255",
-                        "endIpAddress": "255.255.255.255"
+                        "name" : "slow_query_log",
+                        "value" : "ON",
+                        "source" : "user-override"
                     }
                 ]
+            }
+        },
+        "databases": {
+            "value": {
+                "name": "sampledb1",
+                "charset": "utf8",
+                "collation": "utf8_general_ci"
             }
         }
     }

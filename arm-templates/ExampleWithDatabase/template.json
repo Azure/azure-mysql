@@ -37,14 +37,10 @@
     },
     "geoRedundantBackup": {
       "type": "string"
-    },
-    "firewallRules": {
-      "type":"object"
     }
   },
   "resources": [
     {
-      "type": "Microsoft.DBforMySQL/servers",
       "apiVersion": "2017-12-01",
       "kind": "",
       "location": "[parameters('location')]",
@@ -66,35 +62,33 @@
         "size": "[parameters('skuSizeMB')]",
         "family": "[parameters('skuFamily')]"
       },
+      "type": "Microsoft.DBforMySQL/servers",
       "resources": [
-       {
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "location": "[parameters('location')]",
-          "name": "[parameters('firewallRules').properties[0].name]",
-          "dependsOn": [
-              "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
-          ],
-          "properties": {
-              "startIpAddress": "[parameters('firewallRules').properties[0].startIpAddress]",
-              "endIpAddress": "[parameters('firewallRules').properties[0].endIpAddress]"
-          }
-        },
         {
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "location": "[parameters('location')]",
-          "name": "[parameters('firewallRules').properties[1].name]",
-          "dependsOn": [
-              "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]",
-              "[resourceId('Microsoft.DBforMySQL/servers/firewallRules', parameters('serverName'), parameters('firewallRules').properties[0].name)]"
-          ],
-          "properties": {
-              "startIpAddress": "[parameters('firewallRules').properties[1].startIpAddress]",
-              "endIpAddress": "[parameters('firewallRules').properties[1].endIpAddress]"
-          }
-        }
-      ]
+           "type": "Microsoft.DBforMySQL/servers/databases",
+           "apiversion": "2017-12-01",
+           "name": "[concat(parameters('serverName'), '/', parameters('databases').properties[0].name)]",
+           "dependsOn": [
+               "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
+           ],
+           "properties": {
+               "charset": "[parameters('databases').properties[0].charset]",
+               "collation": "[parameters('databases').properties[0].collation]"
+           }
+         },
+         {
+           "type": "Microsoft.DBforMySQL/servers/databases",
+           "apiversion": "2017-12-01",
+           "name": "[concat(parameters('serverName'), '/', parameters('databases').properties[1].name)]",
+           "dependsOn": [
+               "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
+           ],
+           "properties": {
+             "charset": "[parameters('databases').properties[1].charset]",
+             "collation": "[parameters('databases').properties[1].collation]"
+           }
+         }
+       ]
     }
   ],
   "variables": {}

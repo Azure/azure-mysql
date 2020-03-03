@@ -38,14 +38,21 @@
     "geoRedundantBackup": {
       "type": "string"
     },
-    "firewallRules": {
-      "type":"object"
+    "previewFeature": {
+      "type": "string",
+      "defaultValue": ""
+    },  
+    "storageAutoGrow": {
+      "type": "string",
+      "defaultValue": "Enabled"
+    },
+    "serverParameters": {
+      "type": "object"
     }
   },
   "resources": [
     {
-      "type": "Microsoft.DBforMySQL/servers",
-      "apiVersion": "2017-12-01",
+      "apiVersion": "2017-12-01-preview",
       "kind": "",
       "location": "[parameters('location')]",
       "name": "[parameters('serverName')]",
@@ -56,8 +63,10 @@
         "storageProfile": {
           "storageMB": "[parameters('skuSizeMB')]",
           "backupRetentionDays": "[parameters('backupRetentionDays')]",
-          "geoRedundantBackup": "[parameters('geoRedundantBackup')]"
-        }
+          "geoRedundantBackup": "[parameters('geoRedundantBackup')]",
+          "storageAutoGrow": "[parameters('storageAutoGrow')]"
+        },
+        "previewFeature": "[parameters('previewFeature')]"
       },
       "sku": {
         "name": "[parameters('skuName')]",
@@ -66,35 +75,45 @@
         "size": "[parameters('skuSizeMB')]",
         "family": "[parameters('skuFamily')]"
       },
+      "type": "Microsoft.DBforMySQL/servers",
       "resources": [
-       {
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "location": "[parameters('location')]",
-          "name": "[parameters('firewallRules').properties[0].name]",
+        {
+          "type": "configurations",
+          "apiVersion": "2017-12-01-preview",
+          "name": "[parameters('serverParameters').properties[0].name]",
           "dependsOn": [
               "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
           ],
           "properties": {
-              "startIpAddress": "[parameters('firewallRules').properties[0].startIpAddress]",
-              "endIpAddress": "[parameters('firewallRules').properties[0].endIpAddress]"
+              "source": "user-override",           
+              "value": "[parameters('serverParameters').properties[0].value]"            
           }
         },
         {
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "location": "[parameters('location')]",
-          "name": "[parameters('firewallRules').properties[1].name]",
+          "type": "configurations",
+          "apiVersion": "2017-12-01-preview",
+          "name": "[parameters('serverParameters').properties[1].name]",
           "dependsOn": [
-              "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]",
-              "[resourceId('Microsoft.DBforMySQL/servers/firewallRules', parameters('serverName'), parameters('firewallRules').properties[0].name)]"
+              "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
           ],
           "properties": {
-              "startIpAddress": "[parameters('firewallRules').properties[1].startIpAddress]",
-              "endIpAddress": "[parameters('firewallRules').properties[1].endIpAddress]"
+              "source": "user-override",           
+              "value": "[parameters('serverParameters').properties[1].value]"            
+          } 
+        },
+        {
+          "type": "configurations",
+          "apiVersion": "2017-12-01-preview",
+          "name": "[parameters('serverParameters').properties[2].name]",
+          "dependsOn": [
+              "[resourceId('Microsoft.DBforMySQL/servers', parameters('serverName'))]"
+          ],
+          "properties": {
+            "source": "user-override",           
+            "value": "[parameters('serverParameters').properties[2].value]"            
           }
-        }
-      ]
+        }        
+       ]
     }
   ],
   "variables": {}
