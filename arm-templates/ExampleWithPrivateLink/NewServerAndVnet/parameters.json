@@ -4,15 +4,15 @@
     "parameters": {
         "vmUsername": {
             "value": "azureuser"
-        },	
-		"vmPassword": {
+        },
+        "vmPassword": {
             "value": "GEN-PASSWORD"
         },
         "mysqlUsername": {
             "value": "mysqluser"
         },
         "mysqlPassword": {
-             "value": "GEN-PASSWORD"
+            "value": "GEN-PASSWORD"
         }
     }
 }
