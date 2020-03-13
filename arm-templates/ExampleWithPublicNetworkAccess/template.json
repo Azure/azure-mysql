@@ -1,0 +1,135 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mysqlUsername": {
+            "type": "string",
+            "defaultValue": "mysqluser",
+            "metadata": {
+                "description": "User name for the MySQL Server."
+            }
+        },
+        "mysqlPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Password for the MySQL Server."
+            }
+        },
+        "serverName": {
+            "type": "string",
+            "metadata": {
+                "description": "Server Name"
+            }
+        },
+        "skuCapacity": {
+            "type": "int",
+            "defaultValue": 2,
+            "metadata": {
+                "description": "Number of vCores"
+            }
+        },
+        "skuFamily": {
+            "type": "string",
+            "defaultValue": "Gen5",
+            "metadata": {
+                "description": "Hardware Generation"
+            }
+        },
+        "skuName": {
+            "type": "string",
+            "defaultValue": "GP_Gen5_2",
+            "metadata": {
+                "description": "SKU Name"
+            }
+        },
+        "skuSizeMB": {
+            "type": "int",
+            "defaultValue": 51200,
+            "metadata": {
+                "description": "Storage Size"
+            }
+        },
+        "skuTier": {
+            "type": "string",
+            "defaultValue": "GeneralPurpose",
+            "metadata": {
+                "description": "SKU Tier"
+            }
+        },
+        "version": {
+            "type": "string",
+            "defaultValue": "5.7",
+            "metadata": {
+                "description": "MySQL Version"
+            }
+        },
+        "backupRetentionDays": {
+            "type": "int",
+            "defaultValue": 7,
+            "metadata": {
+                "description": "Backup Retention in Days"
+            }
+        },
+        "sslEnforcement": {
+            "type": "string",
+            "allowedValues": [
+                "Enabled",
+                "Disabled"
+            ],
+            "defaultValue": "Enabled",
+            "metadata": {
+                "description": "SSL Enforcement"
+            }
+        },
+        "geoRedundantBackup": {
+            "type": "string",
+            "allowedValues": [
+                "Enabled",
+                "Disabled"
+            ],
+            "defaultValue": "Enabled",
+            "metadata": {
+                "description": "Geo Redundant Backup"
+            }
+        },
+        "publicNetworkAccess": {
+            "type": "string",
+            "allowedValues": [
+                "Enabled",
+                "Disabled"
+            ],
+            "defaultValue": "Enabled",
+            "metadata": {
+                "description": "Public Network Access"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.DBforMySQL/servers",
+            "sku": {
+                "name": "[parameters('skuName')]",
+                "tier": "[parameters('skuTier')]",
+                "capacity": "[parameters('skuCapacity')]",
+                "size": "[parameters('skuSizeMB')]",
+                "family": "[parameters('skuFamily')]"
+            },
+            "kind": "",
+            "name": "[parameters('serverName')]",
+            "apiVersion": "2017-12-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+                "sslEnforcement": "[parameters('sslEnforcement')]",
+                "version": "[parameters('version')]",
+                "administratorLogin": "[parameters('mysqlUsername')]",
+                "administratorLoginPassword": "[parameters('mysqlPassword')]",
+                "storageProfile": {
+                    "storageMB": "[parameters('skuSizeMB')]",
+                    "backupRetentionDays": "[parameters('backupRetentionDays')]",
+                    "geoRedundantBackup": "[parameters('geoRedundantBackup')]"
+                }
+            }
+        }
+    ]
+}
