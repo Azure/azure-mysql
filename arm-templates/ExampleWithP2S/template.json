@@ -156,7 +156,7 @@
     "variables": {
         "imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
-        "ubuntuOSVersion": "18.04",
+        "ubuntuOSVersion": "18.04-LTS",
         "nicName": "[concat(parameters('dnsLabelPrefix'), 'VMNic')]",
         "mysqlServerName": "[concat(parameters('dnsLabelPrefix'), 'MYSQL')]",
         "virtualNetworkName": "[concat(parameters('dnsLabelPrefix'), 'VNET')]",
