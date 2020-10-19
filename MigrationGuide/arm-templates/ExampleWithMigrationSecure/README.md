@@ -7,6 +7,6 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This ARM template deploys [Azure Database for MySQL Server](https://docs.microsoft.com/en-us/azure/mysql/overview) with supported Azure resources to perform a sample migration.
+This ARM template deploys [Azure Database for MySQL Server](https://docs.microsoft.com/en-us/azure/mysql/overview) with supported Azure resources to perform a sample application and MySQL migration.
 
 In addition to the app services, an App Gateway with proper Virtual Network Hub and spoke topology is configured.  The App is also configured with private endpoints that the App Gateway is aware of to route traffic.  This prevents direct access to the MySQL driven web application.
