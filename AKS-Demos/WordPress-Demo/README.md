@@ -1,6 +1,6 @@
 # WordPress Samples application with Azure Database for MySQL on Azure Kubernetes 
 
-**NOTE: Azure Database for Flexible Server is in preview. **
+**NOTE: Azure Database for Flexible Server is in preview.**
 
 You can use the application in [code](./Code) folder to install a fresh WordPress application when you follow [Wordpress on AKS with MySQL Flexible server tutorial](https://docs.microsoft.com/en-us/azure/mysql/flexible-server/tutorial-deploy-wordpress-on-aks). 
 
