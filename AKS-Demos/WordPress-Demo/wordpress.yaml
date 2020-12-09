@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-sample-app
+  template:
+    metadata:
+      labels:
+        app: php-sample-app
+    spec:
+      containers:
+      - name: php-sample-app
+        image: mksuni/php-sample-app:wordpress
+        ports:
+        - containerPort: 80
+        env: 
+        - name: DATABASE_HOST
+          value: "SERVERNAME.mysql.database.azure.com"
+        - name: DATABASE_USERNAME
+          value: "YOUR-USERNAME"
+        - name: DATABASE_PASSWORD
+          value: "YOUR-PASSWORD"
+        - name: DATABASE_NAME
+          value: "flexibleserverdb"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                    - php-sample-app
+              topologyKey: "kubernetes.io/hostname"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-svc
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: php-sample-app
