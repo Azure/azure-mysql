@@ -42,6 +42,6 @@ Deploy your image to [Docker hub](https://docs.docker.com/get-started/part3/#cre
 ## Use the kubernetes manifest to apply 
 
 Use the [wordpress.yaml](./wordpress.yaml) to apply using ```kubectl```. Replace``` [DOCKER-HUB-USER/ACR ACCOUNT]/[YOUR-IMAGE-NAME]:[TAG]``` with your actual WordPress docker image name and tag, for example docker-hub-user/myblog:latest.
-Update env section below with your SERVERNAME, YOUR-DATABASE-USERNAME, YOUR-DATABASE-PASSWORD of your MySQL flexible server.
+Update env section below with your **SERVERNAME, YOUR-DATABASE-USERNAME, YOUR-DATABASE-PASSWORD** of your MySQL flexible server.
 
 Deploy this manifest file using ```kubectl apply -f wordpress.yaml```
