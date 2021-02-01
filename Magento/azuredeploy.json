@@ -20,11 +20,11 @@
         //     "type": "securestring"
         // },
         "aksNodePoolSize": {
-            "defaultValue": 10,
+            "defaultValue": 3,
             "type": "int"
         },
         "aksNodePoolVMSize": {
-            "defaultValue": "Standard_F8s_v2",
+            "defaultValue": "Standard_DS2_v2",
             "type": "string"
         }
     },
@@ -188,17 +188,21 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "apiVersion": "2019-10-01",
+            "apiVersion": "2020-09-01",
             "name": "[variables('aksClusterName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
             ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
             "properties": {
-                "kubernetesVersion": "1.17.9",
+                "kubernetesVersion": "1.19.3",
                 "dnsPrefix": "[variables('aksDnsPrefix')]",
                 "agentPoolProfiles": [
                     {
                         "name": "agentpool",
+                        "mode": "System",
                         "count": "[parameters('aksNodePoolSize')]",
                         "vmSize": "[parameters('aksNodePoolVMSize')]",
                         "osDiskSizeGB": 0,
@@ -209,8 +213,7 @@
                     }
                 ],
                 "servicePrincipalProfile": {
-                    "clientId": "[parameters('aksServicePrincipalClientId')]",
-                    "secret": "[parameters('aksServicePrincipalSecret')]"
+                    "clientId": "msi"
                 },
                 "enableRBAC": true,
                 "networkProfile": {
@@ -220,6 +223,20 @@
                     "dnsServiceIP": "10.0.0.10",
                     "dockerBridgeCidr": "172.17.0.1/16"
                 }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets/providers/roleAssignments",
+            "apiVersion": "2017-05-01",
+            "name": "[variables('msiRoleDefnitionResourceId')]",
+            "dependsOn": [
+                "[variables('virtualNetworkName')]",
+                "[variables('aksClusterName')]"
+            ],
+            "properties": {
+                "roleDefinitionId": "[variables('networkContributorRole')]",
+                "principalId": "[reference(resourceId('Microsoft.ContainerService/managedClusters/', variables('aksClusterName')), '2020-09-01', 'Full').identity.principalId]",
+                "scope": "[variables('kubernetesSubnetId')]"
             }
         },
         {
