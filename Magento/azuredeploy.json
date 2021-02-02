@@ -13,18 +13,36 @@
         "mysqlAdministratorPassword": {
             "type": "securestring"
         },
-        // "aksServicePrincipalClientId": {
-        //     "type": "string"
-        // },
-        // "aksServicePrincipalSecret": {
-        //     "type": "securestring"
-        // },
         "aksNodePoolSize": {
             "defaultValue": 3,
             "type": "int"
         },
         "aksNodePoolVMSize": {
             "defaultValue": "Standard_DS2_v2",
+            "type": "string"
+        },
+        "mySQLSkuName": {
+            "defaultValue": "MO_Gen5_4",
+            "type": "string"
+        },
+        "mySQLSkuTier": {
+            "defaultValue": "MemoryOptimized",
+            "type": "string"
+        },
+        "mySQLSkuFamily": {
+            "defaultValue": "Gen5",
+            "type": "string"
+        },
+        "mySQLSkuCapacity": {
+            "defaultValue": "4",
+            "type": "string"
+        },
+        "mySQLStorageSize": {
+            "defaultValue":"128000",
+            "type": "string"
+        },
+        "fileShareQuota": {
+            "defaultValue":"512",
             "type": "string"
         }
     },
@@ -126,16 +144,16 @@
             "name": "[variables('mysqlServerName')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "MO_Gen5_16",
-                "tier": "MemoryOptimized",
-                "family": "Gen5",
-                "capacity": 16
+                "name": "[parameters('mySQLSkuName')]",
+                "tier": "[parameters('mySQLSkuTier')]",
+                "family": "[parameters('mySQLSkuFamily')]",
+                "capacity": "[parameters('mySQLSkuCapacity')]"
             },
             "properties": {
                 "administratorLogin": "[parameters('mysqlAdministratorLogin')]",
                 "administratorLoginPassword": "[parameters('mysqlAdministratorPassword')]",
                 "storageProfile": {
-                    "storageMB": 512000,
+                    "storageMB": "[parameters('mySQLStorageSize')]",
                     "backupRetentionDays": 7,
                     "geoRedundantBackup": "Disabled",
                     "storageAutoGrow": "Enabled"
@@ -488,7 +506,7 @@
             ],
             "properties": {
                 "accessTier": "Premium",
-                "shareQuota": 16384,
+                "shareQuota": "[parameters('fileShareQuota')]",
                 "enabledProtocols": "SMB"
             }
         }
