@@ -1,12 +1,12 @@
 # Deploy Magento e-commerce on Azure
 
-This repo contains Azure Resource Template to deploy Magento on Azure. It is designed for developers and architects who are planning to deploy Magento on Azure. For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
+This repo contains an Azure Resource Manager (ARM) template designed for developers and architects who are planning to deploy Magento on Azure. For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
 
 ## Solution architecture
 
 The solution architecture for Magento running on Azure is shown in the following diagram.
 
-![Magento solution architecture](media/.....)
+![Magento solution architecture](images/magento-architecture.png)
 
 The Azure services involved in this solution architecture are described below.
 
@@ -20,6 +20,29 @@ The Azure services involved in this solution architecture are described below.
 * AKS uses an Azure [Active Directory (Azure AD)](https://azure.microsoft.com/services/active-directory/) identity to create and manage other Azure resources like Azure load balancers, user authentication, role-based access control, and managed identity.
 * [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) stores the private [Docker](https://www.docker.com/) images that are deployed to the AKS cluster. You can use other container registries like Docker Hub. Note that the default Magento install writes some secrets to the image.
 * [Azure Monitor](https://azure.microsoft.com/services/monitor/) collects and stores metrics and logs, including Azure service platform metrics and application telemetry. Azure Monitor integrates with AKS to collect controller, node, and container metrics, and container and master node logs.
+
+## How to deploy the ARM template
+
+To deploy this ARM template, open the Azure CLI, and then run the following command:
+
+```azurecli-interactive
+az deployment group create --resource-group <ResourceGroupName> --template-file azuredeploy.json
+```
+
+## Parameters
+
+The following table shows a list of parameters to determine how much the cluster can scale. The default values are intentionally scaled down to avoid unnecessary costs for PoC. Values in the rightmost column are the ones we used in our performance test, when we achieved 340 orders per minute using the [Magento performance toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit).
+
+| **Parameter** | **Default value** | **Value in our performance test** |
+|---|---|---|
+| `aksNodePoolSize` | 3 | 10 |
+| `aksNodePoolVMSize` | Standard_DS2_v2 | Standard_F8s_v2 |
+| `mySQLSkuName` | MO_Gen5_4 | MO_Gen5_16 |
+| `mySQLSkuTier` | MemoryOptimized | MemoryOptimized |
+| `mySQLSkuFamily` | Gen5 | Gen5 |
+| `mySQLSkuCapacity` | 4 | 16 |
+| `mySQLStorageSize` | 128000 | 512000 |
+| `fileShareQuota` | 512 | 16384 |
 
 ## Code of Conduct
 
