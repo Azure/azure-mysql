@@ -29,6 +29,11 @@ To deploy this ARM template, open the Azure CLI, and then run the following comm
 az deployment group create --resource-group <ResourceGroupName> --template-file azuredeploy.json
 ```
 
+See [this article](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/common-deployment-errors) for troubleshooting the deployment errors.
+
+Alternatively, the following botton will allow you to deploy the APM template from Azure portal.
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdragon119%2Fazure-mysql%2Fmaster%2FMagento%2Fazuredeploy.json)
+
 ## Parameters
 
 The following table shows a list of parameters to determine how much the cluster can scale. The default values are intentionally scaled down to avoid unnecessary costs for PoC. Values in the rightmost column are the ones we used in our performance test, when we achieved 340 orders per minute using the [Magento performance toolkit](https://github.com/magento/magento2/tree/2.4/setup/performance-toolkit).
@@ -43,6 +48,14 @@ The following table shows a list of parameters to determine how much the cluster
 | `mySQLSkuCapacity` | 4 | 16 |
 | `mySQLStorageSize` | 128000 | 512000 |
 | `fileShareQuota` | 512 | 16384 |
+
+## Next steps
+
+For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
+
+## Cleanup resources
+
+To remove this deployment simply remove the resource group that contains this sample.
 
 ## Code of Conduct
 

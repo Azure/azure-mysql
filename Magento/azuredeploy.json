@@ -6,8 +6,7 @@
             "defaultValue": "[resourceGroup().location]",
             "type": "string"
         },
-        "mysqlAdministratorLogin": {
-            "defaultValue": "magento",
+        "mysqlAdministratorLogin": { 
             "type": "string"
         },
         "mysqlAdministratorPassword": {
