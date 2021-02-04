@@ -2,10 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
-            "defaultValue": "[resourceGroup().location]",
-            "type": "string"
-        },
         "mysqlAdministratorLogin": { 
             "type": "string"
         },
@@ -73,7 +69,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2019-09-01",
             "name": "[variables('virtualNetworkName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -95,13 +91,13 @@
                                 {
                                     "service": "Microsoft.Sql",
                                     "locations": [
-                                        "[parameters('location')]"
+                                        "[resourceGroup().location]"
                                     ]
                                 },
                                 {
                                     "service": "Microsoft.Storage",
                                     "locations": [
-                                        "[parameters('location')]"
+                                        "[resourceGroup().location]"
                                     ]
                                 }
                             ],
@@ -115,7 +111,7 @@
             "type": "Microsoft.ContainerRegistry/registries",
             "apiVersion": "2019-05-01",
             "name": "[variables('containerRegistryName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard",
                 "tier": "Standard"
@@ -141,7 +137,7 @@
             "type": "Microsoft.DBforMySQL/servers",
             "apiVersion": "2017-12-01",
             "name": "[variables('mysqlServerName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "[parameters('mySQLSkuName')]",
                 "tier": "[parameters('mySQLSkuTier')]",
@@ -168,7 +164,7 @@
                     "type": "configurations",
                     "name": "log_bin_trust_function_creators",
                     "apiVersion": "2017-12-01",
-                    "location": "[parameters('location')]",
+                    "location": "[resourceGroup().location]",
                     "properties": {
                         "value": "ON",
                         "source": "user-override"
@@ -207,7 +203,7 @@
             "type": "Microsoft.ContainerService/managedClusters",
             "apiVersion": "2020-09-01",
             "name": "[variables('aksClusterName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
             ],
             "identity": {
@@ -259,7 +255,7 @@
         {
             "name": "[variables('cdnProfileName')]",
             "type": "Microsoft.Cdn/profiles",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "apiVersion": "2016-04-02",
             "sku": {
                 "name": "Standard_Akamai"
@@ -269,7 +265,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "name": "[variables('storageAccountName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Premium_LRS",
                 "tier": "Premium"
@@ -286,7 +282,7 @@
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-05-01",
             "name": "[variables('storagePrivateEndpointName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('filePrivateDnsZoneName'))]",
@@ -313,7 +309,7 @@
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-05-01",
             "name": "[variables('mySqlPrivateEndpointName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.DBforMySQL/servers', variables('mysqlServerName'))]",
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('filePrivateDnsZoneName'))]",

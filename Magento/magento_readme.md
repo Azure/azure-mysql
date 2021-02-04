@@ -1,6 +1,6 @@
 # Deploy Magento e-commerce on Azure
 
-This repo contains an Azure Resource Manager (ARM) template designed for developers and architects who are planning to deploy Magento on Azure. For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
+This repo contains an Azure Resource Manager (ARM) template designed for developers and architects who are planning to deploy required Azure resouces for Magento. For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
 
 ## Solution architecture
 
@@ -32,7 +32,8 @@ az deployment group create --resource-group <ResourceGroupName> --template-file 
 See [this article](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/common-deployment-errors) for troubleshooting the deployment errors.
 
 Alternatively, the following botton will allow you to deploy the APM template from Azure portal.
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdragon119%2Fazure-mysql%2Fmaster%2FMagento%2Fazuredeploy.json)
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-mysql%2Fmaster%2FMagento%2Fazuredeploy.json)
 
 ## Parameters
 
@@ -51,7 +52,8 @@ The following table shows a list of parameters to determine how much the cluster
 
 ## Next steps
 
-For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
+Once all Azure resources are deployed successfuly, now you can start deploying Magento application, Varnish, Elasticsearch and Redis into the AKS cluster but it's out of scope for this guide. For more details about the architecture, see the [Magento e-commerce in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/architecture/example-scenario/magento/magento-azure) guidance on the Azure Architecture Center.
+
 
 ## Cleanup resources
 
