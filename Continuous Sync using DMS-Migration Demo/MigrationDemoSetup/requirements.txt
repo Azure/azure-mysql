@@ -5,7 +5,7 @@ Flask-SQLAlchemy==2.3.2
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-pip==9.0.1
+pip==19.2
 psycopg2==2.7.4
 PyMySQL==0.8.0
 setuptools==28.8.0
