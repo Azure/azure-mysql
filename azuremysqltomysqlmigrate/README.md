@@ -24,8 +24,8 @@
 
 ## How to Use the script azuremysqlmigrate.sh
 
-* Download the scritp file  : **wget -L https://raw.githubusercontent.com/SudheeshGH/azuremysqlmigrate/main/azuremysqlmigfinal.sh**
-* Download the parameter file : **wget -L https://raw.githubusercontent.com/SudheeshGH/azuremysqlmigrate/main/migrateparameter.json**
+* Download the scritp file  : **wget -L https://raw.githubusercontent.com/Azure/azure-mysql/master/azuremysqltomysqlmigrate/azuremysqlmigfinal.sh**
+* Download the parameter file : **wget -L https://raw.githubusercontent.com/Azure/azure-mysql/master/azuremysqltomysqlmigrate/migrateparameter.json**
 * Make the script Executable : **chmod +x azuremysqlmigfinal.sh**
 * Edit the Parameter file and provide the migration details 
 * Edit the *migrateparameter.json*  (Or create a paramater file with this template)
