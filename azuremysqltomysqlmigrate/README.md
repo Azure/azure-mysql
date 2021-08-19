@@ -1,6 +1,6 @@
 # Migrating Azure Databases for MySQLfrom One server to other
 
-The script applies to both Azure Database for MySQL - Single Server and Azure Database for MySQL – Flexible Server
+The script applies to both **Azure Database for MySQL - Single Server and Azure Database for MySQL – Flexible Server**
 
 You can use this script for the following Azure Database for MySQL migration scenarios:
 •	Single Server to Flexible Server
