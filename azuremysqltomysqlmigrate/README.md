@@ -1,5 +1,13 @@
 # Migrating Azure Databases for MySQLfrom One server to other
 
+The script applies to both Azure Database for MySQL - Single Server and Azure Database for MySQL – Flexible Server
+
+You can use this script for the following Azure Database for MySQL migration scenarios:
+•	Single Server to Flexible Server
+•	Flexible Server to Single Server
+•	Single Server to Single Server
+•	Flexible Server to Flexible Server
+
 ## Functionalities Provided by the script 
 
 ### Version 1.6
@@ -31,3 +39,6 @@
 * Edit the *migrateparameter.json*  (Or create a paramater file with this template)
 * Run the scripts : **./azuremysqlmigfinal.sh** *Parameterfilename*
 > If you dont specify the parameter file name it will check the default file migrateparameter.json is same folder
+
+
+
