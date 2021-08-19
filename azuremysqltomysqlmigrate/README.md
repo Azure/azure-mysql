@@ -3,10 +3,10 @@
 The script applies to both **Azure Database for MySQL - Single Server and Azure Database for MySQL – Flexible Server**
 
 You can use this script for the following Azure Database for MySQL migration scenarios:
-•	Single Server to Flexible Server
-•	Flexible Server to Single Server
-•	Single Server to Single Server
-•	Flexible Server to Flexible Server
+* Single Server to Flexible Server
+* Flexible Server to Single Server
+* Single Server to Single Server
+* Flexible Server to Flexible Server
 
 ## Functionalities Provided by the script 
 
