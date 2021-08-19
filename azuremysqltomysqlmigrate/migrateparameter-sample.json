@@ -1,0 +1,69 @@
+{
+  "parameters": {
+    "MY_MYSCENARIO": {
+      "value": "Single-To-Flexible"
+    },
+    "MY_SOURCESUBSCRIPTION": {
+      "value": "xxxxxxxx-xxx-xxxx-xxxxx-xxxxxxxxxxxx"
+    },
+    "MY_TARGETSUBSCRIPTION": {
+      "value": "xxxxxxxx-xxx-xxxx-xxxxx-xxxxxxxxxxxx"
+    },
+    "MY_SOURCERG": {
+      "value": "Sunarayrg"
+    },
+    "MY_TARGETRG": {
+      "value": "Sunarayrg"
+    },
+    "MY_SOURCEDBSERVER": {
+      "value": "snsingleserversource"
+    },
+    "MY_TARGETDBSERVER": {
+      "value": "snsingleserveratrget"
+    },
+    "MY_SOURCEUSER": {
+      "value": "mysqladmin@snsingleserversource"
+    },
+    "MY_TARGETUSER": {
+      "value": "mysqladmin"
+    },
+    "MY_SOURCEUSERPWD": {
+      "value": "PASSWORD"
+    },
+    "MY_TARGETUSERPWD": {
+      "value": "PASSWORD"
+    },
+    "MY_MYSQLDEFAULTPWD": {
+      "__comment": "This is the Password to which the migrated users will be set",
+      "value": "PASSWORD"
+    },
+    "MY_MYDBSELECTION": {
+      "__comment": "By Default the ALL means all databases but if you need specific specify value as :db1 db2 db3 -->to migrate db1,db2 and db3",
+      "value": "ALL"
+    },
+    "MY_MYSELECTIONVALIDATE": {
+      "__comment": "Do you want to skip creation of Validation report (YES Or NO) Case Sensitive",
+      "value": "NO"
+    },
+    "MY_MYSELECTIONFIREWALLRULE": {
+      "__comment": "Do you want to skip Firewall Rule Migration (YES Or NO) Case Sensitive",
+      "value": "YES"
+    },
+    "MY_MYSELECTIONSERVERPARAMETER": {
+      "__comment": "Do you want to skip Server Parameter Migration (YES Or NO) Case Sensitive",
+      "value": "NO"
+    },
+    "MY_MYSELECTIONUSER": {
+      "__comment": "Do you want to skip Server USER Migration (YES Or NO) Case Sensitive",
+      "value": "NO"
+    },
+    "MY_MYSELECTIONROSTART": {
+      "__comment": "Do you want to skip setting the source server to Read only before you start migration",
+      "value": "NO"
+    },
+    "MY_MYSELECTIONROAFTER": {
+      "__comment": "Do you want to set the source server to read only for cutover after migration (NO will make the source server read-write again and there will be data discrepancy",
+      "value": "YES"
+    }
+  }
+}
