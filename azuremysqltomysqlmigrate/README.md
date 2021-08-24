@@ -40,5 +40,6 @@ You can use this script for the following Azure Database for MySQL migration sce
 * Run the scripts : **./azuremysqlmigfinal.sh** *Parameterfilename*
 > If you dont specify the parameter file name it will check the default file migrateparameter.json is same folder
 
-
+>[!Note]
+>If your source and target servers use public access, then you can use the Azure cloud shell, which has all the necessary prerequisites to run the script. Note that the Azure cloud shell timeout and the storage size can be a limitation. **In addition, the script creates a firewall rule to allow all private access for all Azure IP addresses in the source and target Azure Database for MySQL instances.**
 
