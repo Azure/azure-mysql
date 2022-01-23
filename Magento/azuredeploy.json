@@ -210,7 +210,7 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "kubernetesVersion": "1.19",
+                "kubernetesVersion": "1.19.10",
                 "dnsPrefix": "[variables('aksDnsPrefix')]",
                 "agentPoolProfiles": [
                     {
