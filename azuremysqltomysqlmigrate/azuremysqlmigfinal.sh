@@ -128,7 +128,7 @@ echo "Source User Name :" $MY_SOURCEUSER >>$MY_LOGFILE
 echo "Target User Name :" $MY_TARGETUSER >>$MY_LOGFILE
 
 ####comment this in case you dont want your password to be displayed on screen
-echo "Source User Name :" $MY_SOURCEUSERPWD >>$MY_LOGFILE
+echo "Source Password :" $MY_SOURCEUSERPWD >>$MY_LOGFILE
 echo "Target password  :"$MY_TARGETUSERPWD >>$MY_LOGFILE
 echo "Default Passoword for migrated users  :" $MY_MYSQLDEFAULTPWD >>$MY_LOGFILE
 ########################################################################
