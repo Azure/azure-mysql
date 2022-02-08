@@ -134,7 +134,7 @@
             }
         },
         {
-            "type": "Microsoft.DBforMySQL/flexibleServers",
+            "type": "Microsoft.DBforMySQL/servers",
             "apiVersion": "2017-12-01",
             "name": "[variables('mysqlServerName')]",
             "location": "[resourceGroup().location]",
