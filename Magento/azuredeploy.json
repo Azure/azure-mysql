@@ -134,8 +134,8 @@
             }
         },
         {
-            "type": "Microsoft.DBforMySQL/flexibleServers",
-            "apiVersion": "2021-05-01",
+            "type": "Microsoft.DBforMySQL/servers",
+            "apiVersion": "2017-12-01",
             "name": "[variables('mysqlServerName')]",
             "location": "[resourceGroup().location]",
             "sku": {
@@ -163,7 +163,7 @@
                 {
                     "type": "configurations",
                     "name": "log_bin_trust_function_creators",
-                    "apiVersion": "2021-05-01",
+                    "apiVersion": "2017-12-01",
                     "location": "[resourceGroup().location]",
                     "properties": {
                         "value": "ON",
@@ -174,20 +174,20 @@
                     ]
                 },
                 {
-                    "type": "Microsoft.DBforMySQL/flexibleServers/firewallRules",
-                    "apiVersion": "2021-05-01",
-                    "name": "VNet1",
-					"location": "[parameters('location')]",
+                    "type": "firewallRules",
+                    "apiVersion": "2017-12-01",
+                    "name": "AllowAll",
+                    "dependsOn": [
+                        "[variables('mysqlServerName')]"
+                    ],
                     "properties": {
-					 "addressSpace": {
-					  "addressPrefixes": [
-					    "10.0.0.0/16"
-                        ]
+                        "startIpAddress": "0.0.0.0",
+                        "endIpAddress": "255.255.255.255"
                     }
                 },
                 {
                     "type": "databases",
-                    "apiVersion": "2021-05-01",
+                    "apiVersion": "2017-12-01",
                     "name": "magento2",
                     "dependsOn": [
                         "[variables('mysqlServerName')]"
@@ -311,7 +311,7 @@
             "name": "[variables('mySqlPrivateEndpointName')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mysqlServerName'))]",
+                "[resourceId('Microsoft.DBforMySQL/servers', variables('mysqlServerName'))]",
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('filePrivateDnsZoneName'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
             ],
@@ -320,7 +320,7 @@
                     {
                         "name": "[concat(variables('mySqlPrivateEndpointName'), '-plsc-', variables('nameSuffix'))]",
                         "properties": {
-                            "privateLinkServiceId": "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mysqlServerName'))]",
+                            "privateLinkServiceId": "[resourceId('Microsoft.DBforMySQL/servers', variables('mysqlServerName'))]",
                             "groupIds": [
                                 "mysqlServer"
                             ],
