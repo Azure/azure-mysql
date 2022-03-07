@@ -176,10 +176,7 @@
                 {
                     "type": "Microsoft.DBforMySQL/flexibleServers/firewallRules",
                     "apiVersion": "2021-05-01",
-                    "name": "AllowAll",
-                    "dependsOn": [
-                        "[variables('mysqlServerName')]"
-                    ],
+                    "name": "VNet1",
                     "properties": {
                         "startIpAddress": "0.0.0.0",
                         "endIpAddress": "255.255.255.255"
