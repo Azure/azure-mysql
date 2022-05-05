@@ -1,0 +1,45 @@
+# Dockerfile
+FROM php:8.0-apache
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt update && apt install -y zlib1g-dev libpng-dev && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y curl
+RUN apt-get install -y libcurl4-openssl-dev
+#RUN apt-get install -y libbz2-1.0:i386
+#RUN docker-php-ext-install mysqli pdo_mysql exif gd openssl curl fileinfo
+RUN docker-php-ext-install fileinfo
+RUN docker-php-ext-install curl
+#RUN docker-php-ext-install openssl
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-enable mysqli
+RUN docker-php-ext-install pdo_mysql
+
+COPY Artifacts/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY Artifacts/start-apache.sh /usr/local/bin
+
+RUN a2enmod rewrite
+
+COPY sample-php-app /var/www
+RUN chown -R www-data:www-data /var/www
+
+RUN chmod 755 /usr/local/bin/start-apache.sh
+
+CMD ["start-apache.sh"]
+
+ENV SSH_PASSWD "root:Docker!"
+RUN apt-get update \
+        && apt-get install -y --no-install-recommends dialog \
+        && apt-get update \
+  && apt-get install -y --no-install-recommends openssh-server \
+  && echo "$SSH_PASSWD" | chpasswd 
+
+COPY Artifacts/sshd_config /etc/ssh/
+
+COPY Artifacts/init.sh /usr/local/bin/
+
+RUN chmod u+x /usr/local/bin/init.sh
+
+EXPOSE 80 22
+
+ENTRYPOINT ["init.sh"]

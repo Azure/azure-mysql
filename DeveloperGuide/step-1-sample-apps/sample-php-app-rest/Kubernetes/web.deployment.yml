@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-ui
+  namespace: contosonoshnow
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel-ui
+  template:
+    metadata:
+      labels:
+        app: laravel-ui
+    spec:
+      containers:
+      - name: laravel-ui
+        image: appacr[SUFFIX].azurecr.io/noshnowui:0.0.1
+        env:
+          - name: REST_API_BASE_PATH
+            value: http://java-api-service:8080/api/v1
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+          requests:
+            memory: "750Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80

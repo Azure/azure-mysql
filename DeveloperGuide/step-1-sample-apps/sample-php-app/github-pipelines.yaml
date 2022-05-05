@@ -1,0 +1,77 @@
+# Github Pipeline for build / deploy
+# https://gist.github.com/zanechua/a67ed1de1fff20639edb121bdb0b6e4d
+# https://github.com/shivammathur/setup-php/blob/master/examples/laravel-mysql.yml
+
+name: Deploy Laravel PHP app to App Service
+
+on: [push]
+
+env:
+  AZURE_WEBAPP_NAME: mysqldevSUFFIX    # replace the SUFFIX part
+  AZURE_WEBAPP_PACKAGE_PATH: './sample-php-app'   # set this to the path to the web app project, defaults to the repository root
+
+jobs:
+  build-and-deploy:
+    name: Contoso Store
+    runs-on: ubuntu-latest
+    steps:  
+    - name: 'Checkout'
+      uses: actions/checkout@main
+
+    - name: 'Installing System Dependencies'
+      run: |
+        sudo apt-get install -y mysql-common mysql-client-8.0
+        sudo apt-get install -y build-essential debconf-utils screen nodejs mysql-server-8.0 google-chrome-stable
+        sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
+      continue-on-error: true
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.0
+        extensions: mbstring, dom, fileinfo, mysql, curl, openssl, pdo_mysql
+        coverage: xdebug
+      continue-on-error: true
+
+    - name: Start mysql service
+      run: sudo systemctl start mysql
+      continue-on-error: true
+
+    - name: 'Environment Setup'
+      run: |
+        echo "https://raw.githubusercontent.com/${{ github.repository }}/main/sample-php-app/.env.example"
+        curl "https://raw.githubusercontent.com/${{ github.repository }}/main/sample-php-app/.env.example" > .env
+        dir
+      working-directory: ./sample-php-app
+      continue-on-error: true
+
+    - name: 'Installing Package Dependencies'
+      run: |
+        sudo composer self-update
+        composer install --no-interaction --prefer-dist --no-suggest
+        composer --version
+      working-directory: ./sample-php-app
+      continue-on-error: true
+
+    - name: Clear Config
+      run: php artisan config:clear
+
+    - name: 'Running Migrations'
+      run: |
+        php artisan key:generate --force
+        #php artisan migrate --force
+        #php artisan db:seed --force
+      working-directory: ./sample-php-app
+      continue-on-error: true
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      continue-on-error: true

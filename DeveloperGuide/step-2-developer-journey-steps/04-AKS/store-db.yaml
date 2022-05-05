@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: store-db
+  namespace: mysqldev
+  labels:
+        app: store-db
+spec:
+  containers:
+    - name: store-db
+      image: <REGISTRY_NAME>.azurecr.io/store-db:latest
+      volumeMounts:
+        - mountPath: "/var/lib/mysql/"
+          name: mysql-data
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 3306
+        name: mysql
+      env:
+      - name: MYSQL_DATABASE
+        value: "ContosoStore"
+      - name: MYSQL_ROOT_PASSWORD
+        value: "root"
+  imagePullSecrets:
+    - name: acr-secret

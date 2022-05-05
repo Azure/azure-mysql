@@ -1,0 +1,71 @@
+# Azure DevOps Pipeline for build / deploy
+# https://gist.github.com/zanechua/a67ed1de1fff20639edb121bdb0b6e4d
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  phpVersion: 8.0
+
+steps:
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: |
+    curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+    sudo apt-get install -y build-essential debconf-utils screen nodejs mysql-server google-chrome-stable
+    sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
+  displayName: 'Installing System Dependencies'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo  '$(Build.SourcesDirectory)'
+      dir
+
+- script: |
+    cp .env.example.azure .env
+  workingDirectory: $(Build.SourcesDirectory)
+  displayName: 'Environment Setup'
+
+- script: |
+    sudo composer self-update
+    composer install --no-interaction --prefer-dist --no-suggest
+    composer --version
+  displayName: 'Installing Package Dependencies'
+  workingDirectory: $(Build.SourcesDirectory)
+  condition: always()
+
+- script: |
+    php artisan config:clear
+    php artisan key:generate --force
+    #php artisan migrate --force
+    #php artisan db:seed --force
+  displayName: 'Running Migrations'
+  workingDirectory: $(Build.SourcesDirectory)
+  condition: always()
+
+- task: ArchiveFiles@2
+  condition: always()
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/MySQLDev.zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  condition: always()
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'MySQLDev'
+    publishLocation: 'Container'
