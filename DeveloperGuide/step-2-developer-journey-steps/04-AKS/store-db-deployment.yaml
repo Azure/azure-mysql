@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-db
+  namespace: mysqldev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: store-db
+  template:
+    metadata:
+      labels:
+        app: store-db
+    spec:
+      containers:
+      - name: store-db
+        image: <REGISTRY_NAME>.azurecr.io/store-db:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 443
+          name: https
+        env:
+        - name: DB_DATABASE
+          value: "ContosoStore"
+        - name: DB_ROOT_PASSWORD
+          value: "root"
+      imagePullSecrets:
+        - name: acr-secret
