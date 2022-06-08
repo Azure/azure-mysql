@@ -6,7 +6,7 @@ The topics and flow contained in this guide cover the advantages of migrating to
 
 ## Guide and artifacts
 
-This repo contains the Word and PDF versions of the guide.  The guide contains the content and links to tutorial jumpstarts. It references the artifact directories, Step 0 to Step 2.
+To use the samples in this repo, download the Developer Guide from https://aka.ms/mysqldevguide. The guide references artifact directories, Step 0 to Step 2.
 
 - **Step 0:** This directory contains the main **sample-php-app** application. This application is referenced in the evolution tutorials. Reviewing the application now, allows the readers to focus on the adjustments to the architecture.  It is designed to be the fastest method to get acquainted with Azure services using a working PHP application without having to step through each tutorial in the Step 2 repo directory. The **sample-php-app-rest** application is evolved version utilizing a Java REST microservice AKS architecture. Again, these are high-level concept exercises.
 
