@@ -10,7 +10,7 @@ We'll also be addressing any questions you might have about our services and how
 Second Wednesday of every month, 7:30 AM to 8:15 AM PST
 
 ## Where? 
-YouTube Live on the [Azure Database for MySQL Official YouTube Channel](https://aka.ms/azuremysqlyt)
+YouTube Live on the [Azure Database for MySQL Official YouTube Channel](https://aka.ms/azuremysqlyt).
 **Note:** If you haven't already, subscribe today at https://aka.ms/azuremysqlyt!
    
 ## General agenda
