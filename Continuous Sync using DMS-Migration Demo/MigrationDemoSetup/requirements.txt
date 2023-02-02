@@ -10,4 +10,4 @@ psycopg2==2.7.4
 PyMySQL==0.8.0
 setuptools==28.8.0
 SQLAlchemy==1.2.7
-Werkzeug==0.14.1
+Werkzeug==0.15.5
