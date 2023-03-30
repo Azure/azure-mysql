@@ -60,8 +60,7 @@
         "storageAccountDnsName": "magentofs",
         "storageAccountName": "[concat(variables('storageAccountDnsName'), variables('nameSuffix'))]",
         "storagePrivateEndpointName": "[concat('magento-fs-pe-', variables('nameSuffix'))]",
-        "virtualNetworkName": "[concat('magento-vnet-', variables('nameSuffix'))]",
-        "mysqlVirtualNetworkLinkName": "[concat(variables('virtualNetworkName'), '-', variables('nameSuffix'))]"
+        "virtualNetworkName": "[concat('magento-vnet-', variables('nameSuffix'))]"
     },
     "resources": [
         {
@@ -160,7 +159,7 @@
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('mysqlPrivateDnsZoneName'))]",
-                "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('mysqlVirtualNetworkLinkName'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('virtualNetworkName'))]"
             ],
             "sku": {
                 "name": "[parameters('mySQLSkuName')]",
@@ -177,7 +176,7 @@
                 "version": "8.0.21",
                 "createMode": "Default",
                 "network": {
-                    "delegatedSubnetResourceId": "[format('{0}/subnets/{1}', reference(resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('mysqlVirtualNetworkLinkName'))).virtualNetwork.id, variables('mysqlSubnetName'))]",
+                    "delegatedSubnetResourceId": "[format('{0}/subnets/{1}', reference(resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('virtualNetworkName'))).virtualNetwork.id, variables('mysqlSubnetName'))]",
                     "privateDnsZoneResourceId": "[resourceId('Microsoft.Network/privateDnsZones', variables('mysqlPrivateDnsZoneName'))]"
                 }
             },
@@ -381,7 +380,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2020-06-01",
-            "name": "[concat(variables('mysqlPrivateDnsZoneName'), '/', variables('mysqlVirtualNetworkLinkName'))]",
+            "name": "[concat(variables('mysqlPrivateDnsZoneName'), '/', variables('virtualNetworkName'))]",
             "location": "global",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
@@ -397,7 +396,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2020-06-01",
-            "name": "[concat(variables('filePrivateDnsZoneName'), '/', variables('virtualNetworkName'), '-', variables('nameSuffix'))]",
+            "name": "[concat(variables('filePrivateDnsZoneName'), '/', variables('virtualNetworkName'))]",
             "location": "global",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
