@@ -64,27 +64,6 @@
     },
     "resources": [
         {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "apiVersion": "2021-05-01",
-            "name": "[format('{0}/{1}', variables('virtualNetworkName'), variables('mysqlSubnetName'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
-            ],
-            "properties": {
-                "addressPrefix": "10.3.0.0/16",
-                "delegations": [
-                    {
-                        "name": "magento-mysql-Microsoft.DBforMySQL-flexibleServers",
-                        "properties": {
-                            "serviceName": "Microsoft.DBforMySQL/flexibleServers"
-                        }
-                    }
-                ],
-                "privateEndpointNetworkPolicies": "Enabled",
-                "privateLinkServiceNetworkPolicies": "Enabled"
-            }
-        },
-        {
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2021-05-01",
             "name": "[variables('virtualNetworkName')]",
@@ -121,6 +100,22 @@
                                 }
                             ],
                             "privateEndpointNetworkPolicies": "Disabled"
+                        }
+                    },
+                    {
+                        "name": "[variables('mysqlSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "10.3.0.0/16",
+                            "delegations": [
+                                {
+                                    "name": "magento-mysql-Microsoft.DBforMySQL-flexibleServers",
+                                    "properties": {
+                                        "serviceName": "Microsoft.DBforMySQL/flexibleServers"
+                                    }
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     }
                 ]
