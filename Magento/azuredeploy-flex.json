@@ -42,7 +42,7 @@
     },
     "variables": {
         "kubernetesSubnetName": "kubernetes",
-        "mysqlSubnetName": "mysql",
+        "mysqlSubnetName": "magento-mysql",
         "kubernetesSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('kubernetesSubnetName'))]",
         "networkContributorRole": "[resourceId('Microsoft.Authorization/roleDefinitions', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
         "msiRoleDefnitionResourceId": "[concat(variables('virtualNetworkName'), '/', variables('kubernetesSubnetName'), '/Microsoft.Authorization/', guid(resourceGroup().id, variables('aksClusterName')))]",
@@ -194,18 +194,6 @@
                     "dependsOn": [
                         "[variables('mysqlServerName')]"
                     ]
-                },
-                {
-                    "type": "firewallRules",
-                    "apiVersion": "2021-05-01",
-                    "name": "AllowAll",
-                    "dependsOn": [
-                        "[variables('mysqlServerName')]"
-                    ],
-                    "properties": {
-                        "startIpAddress": "0.0.0.0",
-                        "endIpAddress": "255.255.255.255"
-                    }
                 },
                 {
                     "type": "databases",
