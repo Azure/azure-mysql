@@ -28,7 +28,7 @@
             "defaultValue": "128",
             "type": "string"
         },
-        "StorageIops": {
+        "mySQLStorageIops": {
             "defaultValue": 360,
             "type": "Int",
             "metadata": {
@@ -164,7 +164,7 @@
                 "administratorLoginPassword": "[parameters('mysqlAdministratorPassword')]",
                 "storageProfile": {
                     "autoGrow": "Enabled",
-                    "iops": "[parameters('StorageIops')]",
+                    "iops": "[parameters('mySQLStorageIops')]",
                     "storageSizeGB": "[parameters('mysqlStorageSizeGB')]"
                 },
                 "version": "8.0.21",
