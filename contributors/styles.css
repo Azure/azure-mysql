@@ -5,7 +5,9 @@ body {
 
 div {
 	padding-left: 20px;
-    padding-right: 60px;
+    padding-right: 40px;
+    border: 2px solid red;
+    
 }
 
 div.col1 { 
@@ -23,8 +25,8 @@ h1 {
 	font-weight: bold;
     font-family: "Segoe UI Semibold", "Lucida Grande";
     font-weight: normal;
-    font-size: 30pt;
-    letter-spacing: -2px;
+    font-size: 28pt;
+    letter-spacing: 0px;
     color: #505050;
 }
 
@@ -101,13 +103,12 @@ ul {
 }
 
 .gray-section {
-	text-align:left;
     background:#ebebeb;
-    margin-bottom: 20px;
-	/* margin-left: 10px; */
     width: 100%;
-    min-height: 264px;
+    overflow: hidden;
+    display: inline-block;
 }
+
 .blue-section {
 	text-align:left;
     background:rgb(0, 115, 198);
@@ -118,9 +119,9 @@ ul {
 }
 
 .colum-p {
-	display: inline-block;
-	   word-wrap: break-word;
-   width: 100px;
+    float: left;
+    word-wrap: break-word;
+    width: 65%;
 }
 
 .asterisk {
@@ -170,3 +171,49 @@ ul {
 .social-media-icons {
     float: right; 
   }
+
+
+.top-navigation {  
+    width: 100%;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #333
+  }
+
+.top-navigation-left {
+    width: 35%;
+    float: left;
+}
+
+.top-navigation-right {
+    width: 50%;
+    float: right;
+}
+
+.top-navigation a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px 14px 16px;
+    font-size: 17px;
+}
+
+.top-navigation a:hover {
+    background-color: #1C73C6;
+    color: white;
+}
+
+.top-navigation a.active {
+    background-color: #1C73C6;
+    color: white;
+}
+
+.top-navigation-left p {
+    font-size: 17px;
+    color: white;
+	font-weight: normal;
+    font-family: "Segoe UI Semibold", "Lucida Grande";
+    letter-spacing: 0px;
+    display: inline-block;
+    word-wrap: break-word;
+}
