@@ -65,6 +65,11 @@ a:hover {
 .black-text {
 	color: black;
 }
+
+.blue-text {
+    color: #1C73C6;
+}
+
 table {
   border-collapse: collapse;
   vertical-align: middle;
@@ -96,7 +101,7 @@ ul {
 }
 
 .button {		
-	background-color: rgb(0, 115, 198);
+	background-color: rgb(242, 240, 240);
     border-radius: 4px;
     color: white important!;
     display: inline-block;
@@ -201,11 +206,13 @@ ul {
 .top-navigation a:hover {
     background-color: #1C73C6;
     color: white;
+    text-decoration: none;
 }
 
 .top-navigation a.active {
     background-color: #1C73C6;
     color: white;
+    text-decoration: none;
 }
 
 .top-navigation-left p {
