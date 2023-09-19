@@ -5,7 +5,12 @@ body {
 
 div {
 	padding-left: 20px;
-    padding-right: 60px;
+    padding-right: 40px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 div.col1 { 
@@ -23,8 +28,8 @@ h1 {
 	font-weight: bold;
     font-family: "Segoe UI Semibold", "Lucida Grande";
     font-weight: normal;
-    font-size: 30pt;
-    letter-spacing: -2px;
+    font-size: 28pt;
+    letter-spacing: 0px;
     color: #505050;
 }
 
@@ -60,6 +65,11 @@ a:hover {
 .black-text {
 	color: black;
 }
+
+.blue-text {
+    color: #1C73C6;
+}
+
 table {
   border-collapse: collapse;
   vertical-align: middle;
@@ -91,7 +101,7 @@ ul {
 }
 
 .button {		
-	background-color: rgb(0, 115, 198);
+	background-color: rgb(242, 240, 240);
     border-radius: 4px;
     color: white important!;
     display: inline-block;
@@ -101,26 +111,22 @@ ul {
 }
 
 .gray-section {
-	text-align:left;
+    clear: both;
     background:#ebebeb;
-    margin-bottom: 20px;
-	/* margin-left: 10px; */
     width: 100%;
-    min-height: 264px;
+    overflow: hidden;
+    display: inline-block;
 }
+
 .blue-section {
-	text-align:left;
+    clear: both;
+	display: block;
+    text-align:left;
     background:rgb(0, 115, 198);
     margin-bottom: 20px;
     width: 100%;
     /* height: 200; */
 	color: white;
-}
-
-.colum-p {
-	display: inline-block;
-	   word-wrap: break-word;
-   width: 100px;
 }
 
 .asterisk {
@@ -170,3 +176,51 @@ ul {
 .social-media-icons {
     float: right; 
   }
+
+
+.top-navigation {  
+    width: 100%;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #333
+  }
+
+.top-navigation-left {
+    width: 30%;
+    float: left;
+}
+
+.top-navigation-right {
+    width: 50%;
+    float: right;
+}
+
+.top-navigation a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px 14px 16px;
+    font-size: 17px;
+}
+
+.top-navigation a:hover {
+    background-color: #1C73C6;
+    color: white;
+    text-decoration: none;
+}
+
+.top-navigation a.active {
+    background-color: #1C73C6;
+    color: white;
+    text-decoration: none;
+}
+
+.top-navigation-left p {
+    font-size: 17px;
+    color: white;
+	font-weight: normal;
+    font-family: "Segoe UI Semibold", "Lucida Grande";
+    letter-spacing: 0px;
+    display: inline-block;
+    word-wrap: break-word;
+}
