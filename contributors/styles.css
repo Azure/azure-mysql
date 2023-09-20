@@ -115,7 +115,8 @@ ul {
     background:#ebebeb;
     width: 100%;
     overflow: hidden;
-    display: inline-block;
+    display: flex; 
+    align-items: center;
 }
 
 .blue-section {
