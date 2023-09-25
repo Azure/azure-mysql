@@ -97,7 +97,11 @@ th li {
 }
 
 ul {
-    padding-top: 10px;
+    padding-top: 5px;
+}
+
+li {
+    padding-top: 5px;
 }
 
 .button {		
