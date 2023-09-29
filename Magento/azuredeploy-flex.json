@@ -17,7 +17,7 @@
             "type": "string"
         },
         "mySQLSkuName": {
-            "defaultValue": "Standard_E4ds_v4",
+            "defaultValue": "Standard_E4ads_v5",
             "type": "string"
         },
         "mySQLSkuTier": {
@@ -204,7 +204,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "apiVersion": "2020-09-01",
+            "apiVersion": "2023-07-01",
             "name": "[variables('aksClusterName')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
@@ -214,7 +214,7 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "kubernetesVersion": "1.26.0",
+                "kubernetesVersion": "1.27",
                 "dnsPrefix": "[variables('aksDnsPrefix')]",
                 "agentPoolProfiles": [
                     {
