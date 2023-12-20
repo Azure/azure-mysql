@@ -1,79 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_AZURE_MONITOR",
-      "label": "Azure Monitor",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "grafana-azure-monitor-datasource",
-      "pluginName": "Azure Monitor"
-    },
-    {
-      "name": "DS_EXPRESSION",
-      "label": "Expression",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "__expr__"
-    },
-    {
-      "name": "DS_AzMySQL",
-      "label": "AzMySQL",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "mysql",
-      "pluginName": "MySQL"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "datasource",
-      "id": "__expr__",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "barchart",
-      "name": "Bar chart",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.5.8"
-    },
-    {
-      "type": "datasource",
-      "id": "grafana-azure-monitor-datasource",
-      "name": "Azure Monitor",
-      "version": "1.0.0"
-    },
-    {
-      "type": "datasource",
-      "id": "mysql",
-      "name": "MySQL",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -101,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16311,
   "graphTooltip": 0,
-  "id": null,
+  "id": 26,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -125,7 +50,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -146,6 +71,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -217,7 +143,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -250,7 +176,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -284,7 +210,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -298,7 +224,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -319,6 +245,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -390,7 +317,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -424,7 +351,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -438,7 +365,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -459,6 +386,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -530,7 +458,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -564,7 +492,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -595,7 +523,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "description": "",
       "fieldConfig": {
@@ -617,6 +545,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -688,7 +617,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -722,7 +651,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -757,7 +686,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -771,7 +700,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "description": "",
       "fieldConfig": {
@@ -793,6 +722,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -864,7 +794,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -890,7 +820,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -911,6 +841,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -992,7 +923,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1026,7 +957,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1061,7 +992,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1092,7 +1023,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -1113,6 +1044,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1209,7 +1141,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1243,7 +1175,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1278,7 +1210,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1313,7 +1245,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1348,7 +1280,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1362,7 +1294,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "description": "",
       "fieldConfig": {
@@ -1384,6 +1316,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1452,7 +1385,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1482,7 +1415,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "description": "",
       "fieldConfig": {
@@ -1504,6 +1437,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1575,7 +1509,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1609,7 +1543,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1636,7 +1570,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -1657,6 +1591,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1738,7 +1673,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1772,7 +1707,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1786,7 +1721,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -1807,6 +1742,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1888,7 +1824,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1922,7 +1858,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1957,7 +1893,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1992,7 +1928,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2006,7 +1942,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -2027,6 +1963,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2108,7 +2045,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2142,7 +2079,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2177,7 +2114,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2212,7 +2149,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2247,7 +2184,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2282,7 +2219,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2309,7 +2246,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -2330,6 +2267,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2411,7 +2349,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2445,7 +2383,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2480,7 +2418,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2494,7 +2432,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -2515,6 +2453,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2621,7 +2560,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2655,7 +2594,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2665,7 +2604,7 @@
         {
           "datasource": {
             "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
+            "uid": "__expr__"
           },
           "expression": "100*(1 - $A/$B)",
           "hide": false,
@@ -2677,12 +2616,123 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 92
+      },
+      "id": 64,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "percent",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.1.1",
+      "targets": [
+        {
+          "dataset": "mysql",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  IF (\r\n    LOCATE ('.', ibp.table_name) = 0,\r\n    'InnoDB System',\r\n    REPLACE (SUBSTRING_INDEX (ibp.table_name, '.', 1), '`', '')\r\n  ) AS object_schema,\r\n  sys.format_bytes(\r\n    SUM(IF(ibp.compressed_size = 0, 16384, compressed_size))\r\n  ) AS allocated,\r\n  sys.format_bytes(SUM(ibp.data_size)) AS data,\r\n  COUNT(ibp.page_number) AS pages,\r\n  COUNT(IF(ibp.is_hashed = 'YES', 1, NULL)) AS pages_hashed,\r\n  COUNT(IF(ibp.is_old = 'YES', 1, NULL)) AS pages_old,\r\n  ROUND(\r\n    SUM(ibp.number_records) / COUNT(DISTINCT ibp.index_name)\r\n  ) AS rows_cached\r\nFROM\r\n  information_schema.innodb_buffer_page ibp\r\nWHERE\r\n  table_name IS NOT NULL\r\nGROUP BY\r\n  object_schema\r\nORDER BY\r\n  SUM(IF(ibp.compressed_size = 0, 16384, compressed_size)) DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Hot data in Buffer pool",
+      "type": "barchart"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 92
+        "y": 100
       },
       "id": 35,
       "panels": [],
@@ -2692,7 +2742,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -2720,7 +2770,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 93
+        "y": 101
       },
       "id": 32,
       "options": {
@@ -2736,12 +2786,12 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -2795,7 +2845,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -2830,7 +2880,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 93
+        "y": 101
       },
       "id": 34,
       "options": {
@@ -2845,12 +2895,12 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "format": "table",
           "group": [],
@@ -2886,7 +2936,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -2921,7 +2971,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 101
+        "y": 109
       },
       "id": 47,
       "options": {
@@ -2942,12 +2992,12 @@
           }
         ]
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -2979,7 +3029,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3014,7 +3064,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 101
+        "y": 109
       },
       "id": 48,
       "options": {
@@ -3035,12 +3085,12 @@
           }
         ]
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3075,7 +3125,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 119
       },
       "id": 54,
       "panels": [],
@@ -3085,7 +3135,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3113,7 +3163,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 112
+        "y": 120
       },
       "id": 55,
       "options": {
@@ -3129,12 +3179,12 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3166,7 +3216,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3194,7 +3244,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 120
+        "y": 128
       },
       "id": 56,
       "options": {
@@ -3210,12 +3260,12 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3247,7 +3297,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3295,7 +3345,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 128
+        "y": 136
       },
       "id": 49,
       "options": {
@@ -3311,17 +3361,17 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n\tDIGEST_TEXT AS query,\r\n\tSCHEMA_NAME AS db,\r\n\tCOUNT_STAR AS EXEC_COUNT,\r\n\tSUM_TIMER_WAIT AS total_latency,\r\n\tSUM_NO_INDEX_USED AS NO_index_used_COUNT,\r\n\tSUM_NO_GOOD_INDEX_USED AS NO_good_index_used_count,\r\n\tROUND(IFNULL(SUM_NO_INDEX_USED / NULLIF(COUNT_STAR, 0), 0) * 100) AS NO_index_used_pct,\r\n\tSUM_ROWS_SENT AS ROWS_sent,\r\n\tSUM_ROWS_EXAMINED AS ROWS_examined,\r\n\tROUND(SUM_ROWS_SENT / COUNT_STAR) AS ROWS_sent_AVG,\r\n\tROUND(SUM_ROWS_EXAMINED / COUNT_STAR) AS ROWS_examined_AVG,\r\n\tFIRST_SEEN AS first_seen,\r\n\tLAST_SEEN AS last_seen\r\nFROM performance_schema.events_statements_summary_BY_digest\r\nWHERE (SUM_NO_INDEX_USED > 0 \r\n\tOR SUM_NO_GOOD_INDEX_USED > 0)\r\n\tAND DIGEST_TEXT NOT LIKE 'SHOW%'\r\nORDER BY NO_index_used_pct DESC, total_latency DESC;",
+          "rawSql": "SELECT\r\n  sys.format_Statement(DIGEST_TEXT) AS query,\r\n  SCHEMA_NAME AS db,\r\n  COUNT_STAR AS EXEC_COUNT,\r\n  sys.format_time(SUM_TIMER_WAIT) AS total_latency,\r\n  SUM_NO_INDEX_USED AS NO_index_used_count,\r\n  SUM_NO_GOOD_INDEX_USED AS no_good_index_used_count,\r\n  ROUND (\r\n    ifnull(SUM_NO_INDEX_USED / NULLIF (COUNT_STAR, 0), 0) * 100\r\n  ) AS NO_index_used_pct,\r\n  SUM_ROWS_SENT AS rows_sent,\r\n  SUM_ROWS_EXAMINED AS rows_examined,\r\n  ROUND (SUM_ROWS_SENT / COUNT_STAR) AS rows_sent_avg,\r\n  ROUND (SUM_ROWS_EXAMINED / COUNT_STAR) AS rows_examined_avg,\r\n  FIRST_SEEN AS first_seen,\r\n  LAST_SEEN AS last_seen,\r\n  DIGEST AS digest\r\nFROM\r\n  performance_schema.events_statements_summary_by_digest\r\nWHERE\r\n  (\r\n    SUM_NO_INDEX_USED > 0\r\n    OR SUM_NO_GOOD_INDEX_USED > 0\r\n  )\r\n  AND DIGEST_TEXT NOT LIKE 'SHOW%'\r\nORDER BY\r\n  no_index_used_pct DESC,\r\n  total_latency DESC;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -3348,7 +3398,108 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "query"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 317
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 146
+      },
+      "id": 63,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  sys.format_statement (DIGEST_TEXT) AS query,\r\n  SCHEMA_NAME db,\r\n  COUNT_STAR AS EXEC_COUNT,\r\n  sys.format_TIME(SUM_TIMER_WAIT) AS total_Latency,\r\n  SUM_SORt_MERGE_PASSES AS sort_merge_passes,\r\n  ROUND (\r\n    IFNULL(SUM_SORT_MERGE_PASSES / NULLIF(COUNT_STAR, 0), 0)\r\n  ) AS avg_sort_merges,\r\n  SUM_SORT_SCAN AS sorts_using_scans,\r\n  SUM_SORT_RANGE AS sort_using_range,\r\n  SUM_SORT_ROWS AS rows_sorted,\r\n  ROUND (IFNULL(SUM_SORT_ROWS / NULLIF(COUNT_STAR, 0), 0)) AS avg_rows_sorted,\r\n  FIRST_SEEN AS first_seen,\r\n  LAST_SEEN AS last_seen,\r\n  DIGEST AS digest\r\nFROM\r\n  performance_schema.events_statements_summary_by_digest\r\nWHERE\r\n  SUM_SORT_ROWS > 0\r\nORDER BY\r\n  SUM_TIMER_WAIT DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Statements with file sort",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3380,7 +3531,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 138
+        "y": 156
       },
       "id": 53,
       "options": {
@@ -3395,12 +3546,12 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3432,7 +3583,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3467,9 +3618,9 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 138
+        "y": 156
       },
-      "id": 51,
+      "id": 50,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -3482,17 +3633,17 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select tab.table_schema as database_name, tab.table_name\r\nfrom information_schema.tables tab\r\nleft join information_schema.table_constraints tco\r\n          on tab.table_schema = tco.table_schema\r\n          and tab.table_name = tco.table_name\r\n          and tco.constraint_type = 'PRIMARY KEY'\r\nwhere tco.constraint_type is null\r\n      and tab.table_schema not in('mysql', 'information_schema', 'performance_schema', 'sys')\r\n      and tab.table_type = 'BASE TABLE'\r\norder by tab.table_schema, tab.table_name;\r\n",
+          "rawSql": "SELECT object_schema,\r\n\tobject_name,\r\n    index_name\r\nFROM performance_schema.table_io_waits_summary_by_index_usage\r\nWHERE index_name IS NOT NULL\r\n\tAND count_star = 0\r\n    AND object_schema != 'mysql'\r\n    AND index_name != 'PRIMARY'\r\nORDER BY object_schema, object_name;\r\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -3513,13 +3664,125 @@
           }
         }
       ],
-      "title": "Tables without PK",
+      "title": "Unused indexes",
       "type": "table"
     },
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 164
+      },
+      "id": 62,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "percent",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.1.1",
+      "targets": [
+        {
+          "dataset": "mysql",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  sys.format_statement (DIGEST_TEXT) AS query,\r\n  SCHEMA_NAME AS db,\r\n  COUNT_STAR AS exec_count,\r\n  sys.format_time(SUM_TIMER_WAIT) AS total_latency,\r\n  SUM_CREATED_TMP_TABLES AS memory_tmp_tables,\r\n  SUM_CREATED_TMP_DISK_TABLES AS disk_tmp_tables,\r\n  ROUND (\r\n    IFNULL(SUM_CREATED_TMP_TABLES / NULLIF (COUNT_STAR, 0), 0)\r\n  ) AS avg_tmp_tables_per_query,\r\n  ROUND (\r\n    IFNULL (\r\n      SUM_CREATED_TMP_DISK_TABLES / NULLIF(SUM_CREATED_TMP_TABLES, 0),\r\n      0\r\n    ) * 100\r\n  ) AS tmp_tables_to_disk_pct,\r\n  FIRST_SEEN AS first_seen,\r\n  LAST_SEEN AS last_seen,\r\n  DIGEST AS digest\r\nFROM\r\n  performance_schema.events_statements_summary_bY_digest\r\nWHERE\r\n  SUM_CREATED_TMP_TABLES > 0\r\nORDER BY\r\n  SUM_CREATED_TMP_DISK_TABLES DESC,\r\n  SUM_CREATED_TMP_TABLES DESC;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Temp table usage",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3554,9 +3817,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 146
+        "y": 176
       },
-      "id": 50,
+      "id": 51,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -3569,17 +3832,17 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT object_schema,\r\n\tobject_name,\r\n    index_name\r\nFROM performance_schema.table_io_waits_summary_by_index_usage\r\nWHERE index_name IS NOT NULL\r\n\tAND count_star = 0\r\n    AND object_schema != 'mysql'\r\n    AND index_name != 'PRIMARY'\r\nORDER BY object_schema, object_name;\r\n",
+          "rawSql": "select tab.table_schema as database_name, tab.table_name\r\nfrom information_schema.tables tab\r\nleft join information_schema.table_constraints tco\r\n          on tab.table_schema = tco.table_schema\r\n          and tab.table_name = tco.table_name\r\n          and tco.constraint_type = 'PRIMARY KEY'\r\nwhere tco.constraint_type is null\r\n      and tab.table_schema not in('mysql', 'information_schema', 'performance_schema', 'sys')\r\n      and tab.table_type = 'BASE TABLE'\r\norder by tab.table_schema, tab.table_name;\r\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -3600,7 +3863,7 @@
           }
         }
       ],
-      "title": "Unused indexes",
+      "title": "Tables without PK",
       "type": "table"
     },
     {
@@ -3609,7 +3872,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 154
+        "y": 184
       },
       "id": 45,
       "panels": [],
@@ -3619,7 +3882,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3693,7 +3956,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 155
+        "y": 185
       },
       "id": 57,
       "options": {
@@ -3722,7 +3985,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3754,7 +4017,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "${DS_AZURE_MONITOR}"
+        "uid": "azure-monitor-oob"
       },
       "fieldConfig": {
         "defaults": {
@@ -3775,6 +4038,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -3812,7 +4076,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 164
+        "y": 194
       },
       "id": 46,
       "options": {
@@ -3856,7 +4120,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "${DS_AZURE_MONITOR}"
+            "uid": "azure-monitor-oob"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -3869,7 +4133,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -3901,7 +4165,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 164
+        "y": 194
       },
       "id": 61,
       "options": {
@@ -3916,12 +4180,12 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
@@ -3953,7 +4217,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_AzMySQL}"
+        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
       },
       "fieldConfig": {
         "defaults": {
@@ -4011,7 +4275,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 172
+        "y": 202
       },
       "id": 52,
       "options": {
@@ -4027,17 +4291,17 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.5.8",
+      "pluginVersion": "10.1.1",
       "targets": [
         {
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_AzMySQL}"
+            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT OBJECT_TYPE,\r\n       OBJECT_SCHEMA,\r\n       OBJECT_NAME,\r\n       LOCK_TYPE,\r\n       LOCK_STATUS,\r\n       THREAD_ID,\r\n       PROCESSLIST_ID,\r\n       PROCESSLIST_INFO\r\nFROM performance_schema.metadata_locks\r\nINNER JOIN performance_schema.threads ON THREAD_ID = OWNER_THREAD_ID\r\nWHERE PROCESSLIST_ID <> CONNECTION_ID();",
+          "rawSql": "SELECT\r\n  g.object_schema AS object_schema,\r\n  g.object_name AS object_name,\r\n  pt.thread_id AS waiting_thread_id,\r\n  pt.processlist_id AS waiting_pid,\r\n  sys.ps_thread_account(p.owner_thread_id) AS waiting_account,\r\n  p.lock_type AS waiting_lock_type,\r\n  p.lock_duration AS waiting_lock_duration,\r\n  sys.format_statement(pt.processlist_info) AS waiting_query,\r\n  pt.processlist_time AS waiting_query_secs,\r\n  ps.rows_affected AS waiting_query_rows_affected,\r\n  ps.rows_examined AS waiting_query_rows_examined,\r\n  gt.thread_id AS blocking_thread_id,\r\n  gt.processlist_id AS blocking_pid,\r\n  sys.ps_thread_account(g.owner_thread_id) AS blocking_account,\r\n  g.lock_type AS blocking_lock_type,\r\n  g.lock_duration AS blocking_lock_duration,\r\n  CONCAT ('KILL QUERY ', gt.processlist_id) AS sql_kill_blocking_query,\r\n  CONCAT ('KILL ', gt.processlist_id) AS sql_kill_blocking_connection\r\nFROM\r\n  performance_schema.metadata_locks g\r\n  INNER JOIN performance_schema.metadata_locks p ON g.object_type = p.object_type\r\n  AND g.object_schema = p.object_schema\r\n  AND g.object_name = p.object_name\r\n  AND g.lock_status = 'GRANTED'\r\n  AND p.lock_status = 'PENDING'\r\n  INNER JOIN performance_schema.threads gt ON g.owner_thread_id = gt.thread_id\r\n  INNER JOIN performance_schema.threads pt ON p.owner_thread_id = pt.thread_id\r\n  LEFT JOIN performance_schema.events_statements_current gs ON g.owner_thread_id = gs.thread_id\r\n  LEFT JOIN performance_schema.events_statements_current ps ON p.owner_thread_id = ps.thread_id\r\nWHERE\r\n  g.object_type = 'TABLE';\r\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -4069,10 +4333,14 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "${DS_AZURE_MONITOR}"
+          "uid": "azure-monitor-oob"
         },
         "definition": "",
         "hide": 0,
@@ -4104,7 +4372,7 @@
         "current": {
           "selected": false,
           "text": "Azure Monitor",
-          "value": "Azure Monitor"
+          "value": "azure-monitor-oob"
         },
         "hide": 0,
         "includeAll": false,
@@ -4120,10 +4388,14 @@
         "type": "datasource"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "$subscription",
+          "value": "$subscription"
+        },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "${DS_AZURE_MONITOR}"
+          "uid": "azure-monitor-oob"
         },
         "definition": "",
         "hide": 0,
@@ -4148,10 +4420,14 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "$resource_group",
+          "value": "$resource_group"
+        },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "${DS_AZURE_MONITOR}"
+          "uid": "azure-monitor-oob"
         },
         "definition": "",
         "hide": 0,
@@ -4177,10 +4453,14 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "microsoft.healthcareapis/services",
+          "value": "microsoft.healthcareapis/services"
+        },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "${DS_AZURE_MONITOR}"
+          "uid": "azure-monitor-oob"
         },
         "definition": "",
         "hide": 2,
@@ -4209,7 +4489,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {},
