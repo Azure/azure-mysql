@@ -50,7 +50,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -143,7 +143,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -176,7 +176,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -210,7 +210,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -224,7 +224,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -317,7 +317,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -351,7 +351,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -365,7 +365,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -458,7 +458,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -492,7 +492,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -523,7 +523,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "description": "",
       "fieldConfig": {
@@ -617,7 +617,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -651,7 +651,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -686,7 +686,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -700,7 +700,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "description": "",
       "fieldConfig": {
@@ -794,7 +794,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -820,7 +820,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -923,7 +923,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -957,7 +957,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -992,7 +992,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1023,7 +1023,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1141,7 +1141,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1175,7 +1175,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1210,7 +1210,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1245,7 +1245,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1280,7 +1280,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1294,7 +1294,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "description": "",
       "fieldConfig": {
@@ -1385,7 +1385,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1415,7 +1415,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "description": "",
       "fieldConfig": {
@@ -1509,7 +1509,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1543,7 +1543,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1570,7 +1570,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1673,7 +1673,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1707,7 +1707,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1721,7 +1721,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1824,7 +1824,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -1858,7 +1858,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1893,7 +1893,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1928,7 +1928,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -1942,7 +1942,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2045,7 +2045,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2079,7 +2079,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2114,7 +2114,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2149,7 +2149,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2184,7 +2184,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2219,7 +2219,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2246,7 +2246,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2349,7 +2349,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2383,7 +2383,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2418,7 +2418,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2432,7 +2432,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2560,7 +2560,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -2594,7 +2594,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "hide": false,
           "queryType": "Azure Monitor",
@@ -2618,7 +2618,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -2697,7 +2697,7 @@
           "dataset": "mysql",
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -2742,7 +2742,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -2791,7 +2791,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -2845,7 +2845,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -2900,7 +2900,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "format": "table",
           "group": [],
@@ -2936,7 +2936,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -2997,7 +2997,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3029,7 +3029,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3090,7 +3090,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3135,7 +3135,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3184,7 +3184,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3216,7 +3216,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3265,7 +3265,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3297,7 +3297,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3366,7 +3366,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3398,7 +3398,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3467,7 +3467,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3499,7 +3499,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3551,7 +3551,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3583,7 +3583,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3638,7 +3638,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3670,7 +3670,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3749,7 +3749,7 @@
           "dataset": "mysql",
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3782,7 +3782,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3837,7 +3837,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -3882,7 +3882,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -3985,7 +3985,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -4017,7 +4017,7 @@
     {
       "datasource": {
         "type": "grafana-azure-monitor-datasource",
-        "uid": "azure-monitor-oob"
+        "uid": "${DS_AZURE_MONITOR}"
       },
       "fieldConfig": {
         "defaults": {
@@ -4120,7 +4120,7 @@
           },
           "datasource": {
             "type": "grafana-azure-monitor-datasource",
-            "uid": "azure-monitor-oob"
+            "uid": "${DS_AZURE_MONITOR}"
           },
           "queryType": "Azure Monitor",
           "refId": "A",
@@ -4133,7 +4133,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -4185,7 +4185,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -4217,7 +4217,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+        "uid": "DS_AzMySQL"
       },
       "fieldConfig": {
         "defaults": {
@@ -4296,7 +4296,7 @@
         {
           "datasource": {
             "type": "mysql",
-            "uid": "fa8448cb-b8ec-4245-8870-f49b860bfa85"
+            "uid": "DS_AzMySQL"
           },
           "editorMode": "code",
           "format": "table",
@@ -4340,7 +4340,7 @@
         },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "azure-monitor-oob"
+          "uid": "${DS_AZURE_MONITOR}"
         },
         "definition": "",
         "hide": 0,
@@ -4372,7 +4372,7 @@
         "current": {
           "selected": false,
           "text": "Azure Monitor",
-          "value": "azure-monitor-oob"
+          "value": "${DS_AZURE_MONITOR}"
         },
         "hide": 0,
         "includeAll": false,
@@ -4395,7 +4395,7 @@
         },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "azure-monitor-oob"
+          "uid": "${DS_AZURE_MONITOR}"
         },
         "definition": "",
         "hide": 0,
@@ -4427,7 +4427,7 @@
         },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "azure-monitor-oob"
+          "uid": "${DS_AZURE_MONITOR}"
         },
         "definition": "",
         "hide": 0,
@@ -4460,7 +4460,7 @@
         },
         "datasource": {
           "type": "grafana-azure-monitor-datasource",
-          "uid": "azure-monitor-oob"
+          "uid": "${DS_AZURE_MONITOR}"
         },
         "definition": "",
         "hide": 2,
