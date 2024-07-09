@@ -1,0 +1,8 @@
+mysql-connector-python==8.0.31
+python-dotenv==1.0.0
+pandas
+openai
+jupyter
+requests
+azure-core
+azure-search-documents==11.6.0b1
