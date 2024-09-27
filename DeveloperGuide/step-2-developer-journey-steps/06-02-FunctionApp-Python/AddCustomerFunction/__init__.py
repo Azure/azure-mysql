@@ -11,15 +11,15 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 
-    # Connect to MySQL
-    cnx = mysql.connector.connect(
-        user="wsuser", 
-        password='Solliance123', 
-        host="mysqldevSUFFIXflex.mysql.database.azure.com", 
-        port=3306,
-        ssl_ca=crtpath,
-        tls_versions=['TLSv1.2']
-    )
+# Connect to MySQL
+cnx = mysql.connector.connect(
+    user="****", 
+    password='************', 
+    host="********************.mysql.database.azure.com", 
+    port=****,
+    ssl_ca=****,
+    tls_versions=['*****']
+)
 
     logging.info(cnx)
     # Show databases
