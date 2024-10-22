@@ -1,0 +1,964 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "servicePrincipalAppID": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Provide the Service Principle App ID from the output of the Azure CLI commands to create the RBAC roles in the earlier steps."
+            }
+        },
+        "servicePrincipalPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Provide the Service Principle App Password from the output of the Azure CLI commands to create the RBAC roles in the earlier steps."
+            }
+        },
+        "composerUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "Provide the public key from the authentication access keys generated at Commerce Marketplace."
+            }
+        },
+        "composerPassword": {
+            "type": "string",
+            "metadata": {
+                "description": "Provide the private key from the authentication access keys generated at Commerce Marketplace."
+            }
+        },
+        "magentoAdminUsername": {
+            "type": "string",
+            "defaultValue": "magentoadmin",
+            "metadata": {
+                "description": "Provide the username you want for the Magento administator."
+            }
+        },
+        "magentoAdminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Provide the password for the Magento administator."
+            }
+        },
+        "redisCache": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Set this to true for enabling Redis database caching for the Magento application."
+            }
+        },
+        "varnishCache": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Set this to true for enabling Varnish HTML content cache for Magento application."
+            }
+        },
+        "azureCDN": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Set this to true for enabling Azure Content Delivery Network (CDN) for static, CSS and scripts for Magento application. (This requires SSL/TLS enabled.)"
+            }
+        },
+        "SSLEncryptionTLS": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Enable SSL/TLS encryption for users reaching Magento web application over HTTPS."
+            }
+        },
+        "resourceNamePrefix": {
+            "type": "string",
+            "defaultValue": "magento",
+            "metadata": {
+                "description": "Provide a prefix for generating resource names as part of the Magento solution."
+            }
+        },
+        "keyVaultName": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Provide a keyvault name (created in same resource group as pre-requisite) to access certificate for TLS configuration."
+            }
+        },
+        "certificateName": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Provide the respective certificate name in key vault for SSL/TLS configuration."
+            }
+        },
+        "externalFQDN": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Provide the external Fully Qualified DNS Name (FQDN) that you have obtained via any web hosting to map to the Magento site."
+            }
+        },
+        "MYSQLAdministratorLogin": {
+            "type": "string",
+            "defaultValue": "mysqlmagento",
+            "metadata": {
+                "description": "Admin username for Azure Database for MySQL Flexible Server."
+            }
+        },
+        "MYSQLAdministratorPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Admin password for Azure Database for MySQL Flexible Server."
+            }
+        },
+        "MYSQLDatabaseName": {
+            "type": "string",
+            "defaultValue": "magento"
+        },
+        "MYSQLServerEdition": {
+            "type": "string",
+            "defaultValue": "GeneralPurpose",
+            "allowedValues": [
+                "Burstable",
+                "GeneralPurpose",
+                "MemoryOptimized"
+            ],
+            "metadata": {
+                "description": "Choose the Azure Database for MySQL compute tier. High availability is available only for GeneralPurpose and MemoryOptimized Tiers."
+            }
+        },
+        "MYSQLVersion": {
+            "type": "string",
+            "defaultValue": "8.0.21",
+            "allowedValues": [
+                "5.7",
+                "8.0.21"
+            ],
+            "metadata": {
+                "description": "Choose the MySQL version to be used in Azure Database for MySQL."
+            }
+        },
+        "MYSQLAvailabilityZone": {
+            "type": "string",
+            "defaultValue": "",
+            "allowedValues": [
+                "1",
+                "2",
+                "3",
+                ""
+            ],
+            "metadata": {
+                "description": "Choose the Azure availability zone for the Azure Database for MySQL server, ensure that the zone exists in respective region. (If you don't have a preference, leave this setting blank.)"
+            }
+        },
+        "MYSQLHighAvailability": {
+            "type": "string",
+            "defaultValue": "Disabled",
+            "allowedValues": [
+                "Disabled",
+                "SameZone",
+                "ZoneRedundant"
+            ],
+            "metadata": {
+                "description": "Choose High availability mode for Azure Database for MySQL server: Disabled, SameZone, or ZoneRedundant."
+            }
+        },
+        "MYSQLStandbyAvailabilityZone": {
+            "type": "string",
+            "defaultValue": "",
+            "allowedValues": [
+                "1",
+                "2",
+                "3",
+                ""
+            ],
+            "metadata": {
+                "description": "Availability zone of the High availability standby server, ensure that the zone exists in the respective region. (Leave blank for No Preference). Add this value if HA is enabled."
+            }
+        },
+        "MYSQLStorageSizeGB": {
+            "defaultValue": 20,
+            "minValue": 20,
+            "maxValue": 16384,
+            "type": "int",
+            "metadata": {
+                "description": "Azure database for MySQL storage size in GiB. Storage is used for the database files, temporary files, transaction logs, and the MySQL server logs. In all compute tiers, the minimum storage supported is 20 GiB and maximum is 16 TiB (16384 GiB)."
+            }
+        },
+        "MYSQLComputeSKU": {
+            "type": "string",
+            "defaultValue": "Standard_D2ads_v5",
+            "allowedValues": [
+                "Standard_B1ms",
+                "Standard_B2ms",
+                "Standard_B4ms",
+                "Standard_B8ms",
+                "Standard_B12ms",
+                "Standard_B16ms",
+                "Standard_B20ms",
+                "Standard_D2ads_v5",
+                "Standard_D2ds_v4",
+                "Standard_D4ads_v5",
+                "Standard_D4ds_v4",
+                "Standard_D8ads_v5",
+                "Standard_D8ds_v4",
+                "Standard_D16ads_v5",
+                "Standard_D16ds_v4",
+                "Standard_D32ads_v5",
+                "Standard_D32ds_v4",
+                "Standard_D48ads_v5",
+                "Standard_D48ds_v4",
+                "Standard_D64ads_v5",
+                "Standard_D64ds_v4",
+                "Standard_E2ds_v4",
+                "Standard_E2ads_v5",
+                "Standard_E4ds_v4",
+                "Standard_E4ads_v5",
+                "Standard_E8ds_v4",
+                "Standard_E8ads_v5",
+                "Standard_E16ds_v4",
+                "Standard_E16ads_v5",
+                "Standard_E20ds_v4",
+                "Standard_E20ads_v5",
+                "Standard_E32ds_v4",
+                "Standard_E32ads_v5",
+                "Standard_E48ds_v4",
+                "Standard_E48ads_v5",
+                "Standard_E64ds_v4",
+                "Standard_E64ads_v5",
+                "Standard_E80ds_v4",
+                "Standard_E2ds_v5",
+                "Standard_E4ds_v5",
+                "Standard_E8ds_v5",
+                "Standard_E16ds_v5",
+                "Standard_E20ds_v5",
+                "Standard_E32ds_v5",
+                "Standard_E48ds_v5",
+                "Standard_E64ds_v5",
+                "Standard_E96ds_v5"
+            ],
+            "metadata": {
+                "description": "The name of the sku for Azure Database for MySQL Flexible Servers, e.g. Standard_D32ds_v4. Complete list is available here : https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-service-tiers-storage. Ensure the SKU capacity is available in the region before selecting from the MySQL Flexible server create page."
+            }
+        },
+        "MYSQLBackupRetentionDays": {
+            "type": "int",
+            "defaultValue": 7,
+            "minValue": 1,
+            "maxValue": 35,
+            "metadata": {
+                "description": "By default, backups are retained for 7 days. The minimum retention period is 1 day and the maximum retention period is 35 days."
+            }
+        },
+        "MYSQLGeoRedundantBackup": {
+            "type": "string",
+            "defaultValue": "Disabled",
+            "allowedValues": [
+                "Disabled",
+                "Enabled"
+            ],
+            "metadata": {
+                "description": "Enable Geo-redundant backups for Azure Database for MySQL Flexible Server."
+            }
+        },
+        "kubernetesSystemNodePoolCount": {
+            "defaultValue": 1,
+            "type": "int",
+            "minValue": 1,
+            "maxValue": 1000,
+            "metadata": {
+                "description": "Specifies the number of agents (VMs) to host docker containers. Allowed values must be in the range of 1 to 1000 (inclusive). The default value is 1."
+            }
+        },
+        "kubernetesSystemNodePoolVMSize": {
+            "defaultValue": "Standard_DS2_v2",
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the vm size of nodes in the node pool."
+            }
+        },
+        "enableSecretRotation": {
+            "type": "string",
+            "defaultValue": "true",
+            "metadata": {
+                "description": "Accepts value true/false. If true, periodically updates the pod mount and Kubernetes Secret with the latest content from external secrets store."
+            }
+        },
+        "rotationPollInterval": {
+            "type": "string",
+            "defaultValue": "2m",
+            "metadata": {
+                "description": "If enableSecretRotation is true, this setting specifies the secret rotation poll interval duration. This duration can be adjusted based on how frequently the mounted contents for all pods and Kubernetes secrets need to be resynced to the latest."
+            }
+        },
+        "storageAccountName": {
+            "type": "string",
+            "defaultValue": "magentostorage",
+            "metadata": {
+                "description": "he unique name for Azure Storage Account to host Magento content."
+            }
+        },
+        "storageAccountSKU": {
+            "type": "string",
+            "defaultValue": "Premium_LRS",
+            "allowedValues": [
+                "Premium_LRS",
+                "Premium_ZRS",
+                "Standard_GRS",
+                "Standard_GZRS",
+                "Standard_LRS",
+                "Standard_ZRS"
+            ],
+            "metadata": {
+                "description": "Choose the SKU of the storage account."
+            }
+        },
+        "magentoFileShareQuotaGB": {
+            "defaultValue": "100",
+            "type": "string",
+            "metadata": {
+                "description": "Size of the azure file share in GB. This quota is for the Magento media and static files. The minimum share size is 100 GB."
+            }
+        },
+        "elasticsearchFileShareQuotaGB": {
+            "defaultValue": "100",
+            "type": "string",
+            "metadata": {
+                "description": "Size of the azure file share in GB. This quota is for the elasticsearch. The minimum share size is 100 GB."
+            }
+        },
+        "VMSize": {
+            "type": "string",
+            "defaultValue": "Standard_DS1_v2",
+            "metadata": {
+                "description": "Choose the compute size for virtual machine."
+            }
+        },
+        "VMAdminUsername": {
+            "type": "string",
+            "defaultValue": "magentovmadmin",
+            "metadata": {
+                "description": "Admin username for the temporary virtual machine used for AKS setup."
+            }
+        },
+        "VMAdminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Admin password for the temporary virtual machine used for AKS setup."
+            }
+        },
+        "SKUAzureCDN": {
+            "type": "string",
+            "defaultValue": "Standard_Microsoft",
+            "allowedValues": [
+                "Standard_Akamai",
+                "Standard_Microsoft",
+                "Standard_Verizon",
+                "Premium_Verizon"
+            ],
+            "metadata": {
+                "description": "Provide the profile SKU for the Azure CDN."
+            }
+        },
+        "magentoAdminEmail": {
+            "type": "string",
+            "metadata": {
+                "description": "The email address for the Magento admin."
+            }
+        }
+    },
+    "variables": {
+        "azureSubscriptionId": "[subscription().subscriptionId]",
+        "azureResourceGroup": "[resourceGroup().name]",
+        "tenentId": "[subscription().tenantId]",
+        "uniqueSuffix": "[uniqueString(resourceGroup().id)]",
+        "virtualNetworkName": "[concat(parameters('resourceNamePrefix'), '-vnet')]",
+        "virtualNetworkAddressPrefix": "10.0.0.0/8",
+        "mySqlVnetSubnetName": "[concat(parameters('resourceNamePrefix'), '-mysql-subnet')]",
+        "mySqlVnetSubnetAddressPrefix": "10.1.0.0/16",
+        "kubernetesVnetSubnetName": "[concat(parameters('resourceNamePrefix'), '-kubernetes-subnet')]",
+        "kubernetesVnetSubnetAddressPrefix": "10.2.0.0/16",
+        "privateLinksVnetSubnetName": "[concat(parameters('resourceNamePrefix'), '-private-links-subnet')]",
+        "privateLinksVnetSubnetAddressPrefix": "10.3.0.0/16",
+        "mySqlServerName": "[concat(parameters('resourceNamePrefix'), '-mysql-', variables('uniqueSuffix'))]",
+        "kubernetesClusterName": "[concat(parameters('resourceNamePrefix'), '-aks')]",
+        "kubernetesClusterDnsPrefix": "[concat(parameters('resourceNamePrefix'), '-aks-dns')]",
+        "kubernetesClusterRoleAssignmentName": "[guid(subscription().subscriptionId, resourceGroup().name, variables('kubernetesClusterName'), variables('kubernetesVnetSubnetName'))]",
+        "kubernetesClusterSecretProviderRoleAssignmentName": "[guid(parameters('keyVaultName'), variables('kubernetesClusterName'), 'AzureKeyVaultSecretProvider', uniqueString(deployment().name))]",
+        "cdnProfileName": "[concat(parameters('resourceNamePrefix'), '-cdn')]",
+        "fileSharePrivateEndpointName": "[concat(parameters('resourceNamePrefix'), '-fs-pe')]",
+        "enableVirtualMachinePublicIp": true,
+        "virtualMachinePublicIpAddressesName": "[concat(parameters('resourceNamePrefix'), '-vm-ip')]",
+        "virtualMachineNetworkInterfaceName": "[concat(parameters('resourceNamePrefix'), '-vm-nic')]",
+        "virtualMachineName": "[concat(parameters('resourceNamePrefix'), '-vm')]",
+        "fileSharePrivateIpDeploymentName": "[concat(parameters('resourceNamePrefix'), '-fs-ip-deployment')]",
+        "filePrivateDnsZoneName": "privatelink.file.core.windows.net",
+        "mySqlPrivateDnsZoneName": "[concat(variables('uniqueSuffix'), '-mysql.private.mysql.database.azure.com')]",
+        "storageAccountFileServicesName": "default",
+        "magentoFileShareName": "magento",
+        "elasticsearchFileShareName": "elasticsearch",
+        "magentoCurrency": "USD",
+        "magentoTimezone": "UTC"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[variables('virtualNetworkName')]",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2023-06-01",
+            "dependsOn": [],
+            "tags": {
+                "displayName": "magento-vnet"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('virtualNetworkAddressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('mySqlVnetSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('mySqlVnetSubnetAddressPrefix')]",
+                            "delegations": [
+                                {
+                                    "name": "mysql-flexibleServers-subnet-delegation",
+                                    "properties": {
+                                        "serviceName": "Microsoft.DBforMySQL/flexibleServers"
+                                    }
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[variables('kubernetesVnetSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('kubernetesVnetSubnetAddressPrefix')]"
+                        }
+                    },
+                    {
+                        "name": "[variables('privateLinksVnetSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('privateLinksVnetSubnetAddressPrefix')]",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "[resourceGroup().location]"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "[resourceGroup().location]"
+                                    ]
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Disabled"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('mysqlPrivateDnsZoneName')]",
+            "location": "global",
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+            "apiVersion": "2020-06-01",
+            "name": "[concat(variables('mysqlPrivateDnsZoneName'), '/', variables('virtualNetworkName'))]",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('mysqlPrivateDnsZoneName'))]"
+            ],
+            "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DBforMySQL/flexibleServers",
+            "apiVersion": "2023-06-30",
+            "name": "[variables('mySqlServerName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('MYSQLComputeSKU')]",
+                "tier": "[parameters('MYSQLServerEdition')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('mysqlPrivateDnsZoneName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('virtualNetworkName'))]"
+            ],
+            "properties": {
+                "version": "[parameters('MYSQLVersion')]",
+                "administratorLogin": "[parameters('MYSQLAdministratorLogin')]",
+                "administratorLoginPassword": "[parameters('MYSQLAdministratorPassword')]",
+                "availabilityZone": "[parameters('MYSQLAvailabilityZone')]",
+                "highAvailability": {
+                    "mode": "[parameters('MYSQLHighAvailability')]",
+                    "standbyAvailabilityZone": "[parameters('MYSQLStandbyAvailabilityZone')]"
+                },
+                "storageProfile": {
+                    "storageSizeGB": "[parameters('MYSQLStorageSizeGB')]"
+                },
+                "backup": {
+                    "backupRetentionDays": "[parameters('MYSQLBackupRetentionDays')]",
+                    "geoRedundantBackup": "[parameters('MYSQLGeoRedundantBackup')]"
+                },
+                "createMode": "Default",
+                "network": {
+                    "delegatedSubnetResourceId": "[format('{0}/subnets/{1}', reference(resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('mysqlPrivateDnsZoneName'), variables('virtualNetworkName'))).virtualNetwork.id, variables('mySqlVnetSubnetName'))]",
+                    "privateDnsZoneResourceId": "[resourceId('Microsoft.Network/privateDnsZones', variables('mysqlPrivateDnsZoneName'))]"
+                }
+            },
+            "resources": [
+                {
+                    "type": "configurations",
+                    "name": "log_bin_trust_function_creators",
+                    "apiVersion": "2023-06-30",
+                    "location": "[resourceGroup().location]",
+                    "properties": {
+                        "value": "ON",
+                        "source": "user-override"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mySqlServerName'))]"
+                    ]
+                },
+                {
+                    "type": "configurations",
+                    "name": "require_secure_transport",
+                    "apiVersion": "2023-06-30",
+                    "location": "[resourceGroup().location]",
+                    "properties": {
+                        "value": "OFF",
+                        "source": "user-override"
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mySqlServerName'))]"
+                    ]
+                },
+                {
+                    "type": "databases",
+                    "apiVersion": "2023-06-30",
+                    "name": "[parameters('MYSQLDatabaseName')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mySqlServerName'))]"
+                    ],
+                    "properties": {
+                        "charset": "utf8",
+                        "collation": "utf8_general_ci"
+                    }
+                }
+            ],
+            "tags": {
+                "PackagedApp": "Magento2"
+            }
+        },
+        {
+            "type": "Microsoft.ContainerService/managedClusters",
+            "apiVersion": "2023-07-01",
+            "name": "[variables('kubernetesClusterName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+            ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "kubernetesVersion": "1.29",
+                "dnsPrefix": "[variables('kubernetesClusterDnsPrefix')]",
+                "agentPoolProfiles": [
+                    {
+                        "name": "agentpool",
+                        "mode": "System",
+                        "count": "[parameters('kubernetesSystemNodePoolCount')]",
+                        "VMSize": "[parameters('kubernetesSystemNodePoolVMSize')]",
+                        "osDiskSizeGB": 0,
+                        "vnetSubnetID": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('kubernetesVnetSubnetName'))]",
+                        "type": "VirtualMachineScaleSets",
+                        "osType": "Linux",
+                        "storageProfile": "ManagedDisks"
+                    }
+                ],
+                "servicePrincipalProfile": {
+                    "clientId": "msi"
+                },
+                "enableRBAC": true,
+                "networkProfile": {
+                    "networkPlugin": "azure",
+                    "loadBalancerSku": "standard",
+                    "serviceCidr": "10.4.0.0/16",
+                    "dnsServiceIP": "10.4.0.10",
+                    "dockerBridgeCidr": "172.17.0.1/16"
+                },
+                "addonProfiles": {
+                    "azureKeyvaultSecretsProvider": {
+                        "enabled": true,
+                        "config": {
+                            "enableSecretRotation": "[parameters('enableSecretRotation')]",
+                            "rotationPollInterval": "[parameters('rotationPollInterval')]"
+                        }
+                    }
+                }
+            },
+            "tags": {
+                "PackagedApp": "Magento2"
+            }
+        },
+        {
+            "condition": "[parameters('SSLEncryptionTLS')]",
+            "type": "Microsoft.KeyVault/vaults/providers/roleAssignments",
+            "apiVersion": "2020-04-01-preview",
+            "name": "[concat(if(parameters('SSLEncryptionTLS'), parameters('keyVaultName'), 'no-keyvault'), '/', 'Microsoft.Authorization/', variables('kubernetesClusterSecretProviderRoleAssignmentName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName'))]"
+            ],
+            "properties": {
+                "principalId": "[reference(resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName')), '2023-01-01').addonProfiles.azureKeyvaultSecretsProvider.identity.objectId]",
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')]",
+                "scope": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets/providers/roleAssignments",
+            "apiVersion": "2022-04-01",
+            "name": "[concat(variables('virtualNetworkName'), '/', variables('kubernetesVnetSubnetName'), '/Microsoft.Authorization/', variables('kubernetesClusterRoleAssignmentName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName'))]"
+            ],
+            "properties": {
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
+                "principalId": "[reference(resourceId('Microsoft.ContainerService/managedClusters/', variables('kubernetesClusterName')), '2023-10-01', 'Full').identity.principalId]",
+                "scope": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('kubernetesVnetSubnetName'))]"
+            }
+        },
+        {
+            "condition": "[parameters('azureCDN')]",
+            "name": "[variables('cdnProfileName')]",
+            "type": "Microsoft.Cdn/profiles",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2023-05-01",
+            "sku": {
+                "name": "[parameters('SKUAzureCDN')]"
+            },
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2022-09-01",
+            "name": "[parameters('storageAccountName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('storageAccountSKU')]"
+            },
+            "kind": "FileStorage",
+            "properties": {
+                "minimumTlsVersion": "TLS1_0",
+                "allowBlobPublicAccess": false,
+                "largeFileSharesState": "Enabled",
+                "supportsHttpsTrafficOnly": true
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2023-04-01",
+            "name": "[concat(parameters('storageAccountName'), '/', variables('storageAccountFileServicesName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            ],
+            "sku": {
+                "name": "[parameters('storageAccountSKU')]"
+            },
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+            "apiVersion": "2023-04-01",
+            "name": "[concat(parameters('storageAccountName'), '/', variables('storageAccountFileServicesName'), '/', variables('magentoFileShareName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), variables('storageAccountFileServicesName'))]"
+            ],
+            "properties": {
+                "accessTier": "[if(or(equals(parameters('storageAccountSKU'), 'Premium_LRS'), equals(parameters('storageAccountSKU'), 'Premium_ZRS')), 'Premium', 'TransactionOptimized')]",
+                "shareQuota": "[parameters('magentoFileShareQuotaGB')]",
+                "enabledProtocols": "SMB"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+            "apiVersion": "2023-04-01",
+            "name": "[concat(parameters('storageAccountName'), '/', variables('storageAccountFileServicesName'), '/', variables('elasticsearchFileShareName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices', parameters('storageAccountName'), variables('storageAccountFileServicesName'))]"
+            ],
+            "properties": {
+                "accessTier": "[if(or(equals(parameters('storageAccountSKU'), 'Premium_LRS'), equals(parameters('storageAccountSKU'), 'Premium_ZRS')), 'Premium', 'TransactionOptimized')]",
+                "shareQuota": "[parameters('elasticsearchFileShareQuotaGB')]",
+                "enabledProtocols": "SMB"
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateEndpoints",
+            "apiVersion": "2023-06-01",
+            "name": "[variables('fileSharePrivateEndpointName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            ],
+            "properties": {
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[concat(parameters('resourceNamePrefix'), '-fs-pe-plsc')]",
+                        "properties": {
+                            "privateLinkServiceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+                            "groupIds": [
+                                "file"
+                            ]
+                        }
+                    }
+                ],
+                "subnet": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('privateLinksVnetSubnetName'))]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "[variables('fileSharePrivateIpDeploymentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', variables('fileSharePrivateEndpointName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "expressionEvaluationOptions": {
+                    "scope": "inner"
+                },
+                "parameters": {
+                    "networkInterfaceId": {
+                        "value": "[reference(resourceId('Microsoft.Network/privateEndpoints', variables('fileSharePrivateEndpointName')), '2020-05-01').networkInterfaces[0].id]"
+                    }
+                },
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "networkInterfaceId": {
+                            "type": "string"
+                        }
+                    },
+                    "variables": {},
+                    "resources": [],
+                    "outputs": {
+                        "privateIpAddress": {
+                            "type": "string",
+                            "value": "[reference(parameters('networkInterfaceId'), '2020-05-01').ipConfigurations[0].properties.privateIpAddress]"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('filePrivateDnsZoneName')]",
+            "location": "global",
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/A",
+            "apiVersion": "2020-06-01",
+            "name": "[concat(variables('filePrivateDnsZoneName'), '/', parameters('storageAccountName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('filePrivateDnsZoneName'))]",
+                "[resourceId('Microsoft.Resources/deployments', variables('fileSharePrivateIpDeploymentName'))]"
+            ],
+            "properties": {
+                "ttl": 3600,
+                "aRecords": [
+                    {
+                        "ipv4Address": "[reference(variables('fileSharePrivateIpDeploymentName')).outputs.privateIpAddress.value]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(variables('filePrivateDnsZoneName'), '/', variables('virtualNetworkName'))]",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('filePrivateDnsZoneName'))]"
+            ],
+            "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+                }
+            }
+        },
+        {
+            "condition": "[equals(variables('enableVirtualMachinePublicIp'), true())]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2023-06-01",
+            "name": "[variables('virtualMachinePublicIpAddressesName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+            }
+        },
+        {
+            "condition": "[equals(variables('enableVirtualMachinePublicIp'), true())]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2023-06-01",
+            "name": "[variables('virtualMachineNetworkInterfaceName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('virtualMachinePublicIpAddressesName'))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('kubernetesVnetSubnetName'))]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('virtualMachinePublicIpAddressesName'))]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "condition": "[equals(variables('enableVirtualMachinePublicIp'), false())]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2023-06-01",
+            "name": "[variables('virtualMachineNetworkInterfaceName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('virtualMachinePublicIpAddressesName'))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('kubernetesVnetSubnetName'))]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2023-03-01",
+            "name": "[variables('virtualMachineName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('virtualMachineNetworkInterfaceName'))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "VMSize": "[parameters('VMSize')]"
+                },
+                "osProfile": {
+                    "computerName": "[variables('virtualMachineName')]",
+                    "adminUsername": "[parameters('VMAdminUsername')]",
+                    "adminPassword": "[parameters('VMAdminPassword')]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[concat(parameters('resourceNamePrefix'), '-vm-osdisk')]",
+                        "createOption": "FromImage",
+                        "deleteOption": "Delete"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('virtualMachineNetworkInterfaceName'))]",
+                            "properties": {
+                                "primary": true,
+                                "deleteOption": "Delete"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2023-03-01",
+            "name": "[concat(variables('virtualMachineName'), '/CustomScriptExtension')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('virtualMachinePublicIpAddressesName'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachineName'))]",
+                "[resourceId('Microsoft.DBforMySQL/flexibleServers', variables('mySqlServerName'))]",
+                "[resourceId('Microsoft.Cdn/profiles', variables('cdnProfileName'))]",
+                "[resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets/providers/roleAssignments', variables('virtualNetworkName'), variables('kubernetesVnetSubnetName'), 'Microsoft.Authorization', variables('kubernetesClusterRoleAssignmentName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', parameters('storageAccountName'), variables('storageAccountFileServicesName'), variables('magentoFileShareName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones/A', variables('filePrivateDnsZoneName'), parameters('storageAccountName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', variables('filePrivateDnsZoneName'), variables('virtualNetworkName'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "typeHandlerVersion": "2.1",
+                "autoUpgradeMinorVersion": true,
+                "ForceUpdateTag": "1.0",
+                "protectedSettings": {
+                    "fileUris": [
+                        "https://raw.githubusercontent.com/aakagarwal/azure-mysql/refs/heads/master/Magento2/deploy-aks.sh"
+                    ],
+                    "commandToExecute": "[concat('bash deploy-aks.sh ', variables('azureSubscriptionId'), ' ', variables('azureResourceGroup'), ' ', parameters('servicePrincipalAppId'), ' ', parameters('servicePrincipalPassword'), ' ', variables('tenentId'), ' ', parameters('composerUsername'), ' ', parameters('composerPassword'), ' ', concat(variables('mySqlServerName'), '.', variables('mySqlPrivateDnsZoneName')), ' ', parameters('MYSQLAdministratorLogin'), ' ', parameters('MYSQLAdministratorPassword'), ' ',  variables('kubernetesClusterName'), ' ', parameters('storageAccountName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2022-09-01').keys[0].value, ' ', parameters('magentoAdminUsername'), ' ', parameters('magentoAdminPassword'), ' ', variables('virtualMachineName'), ' ', if(not(empty(parameters('externalFQDN'))), parameters('externalFQDN'), 'EXTERNAL_FQDN'), ' ', variables('cdnProfileName'), ' ', parameters('redisCache'), ' ', parameters('varnishCache'), ' ', parameters('azureCDN'), ' ', parameters('SSLEncryptionTLS'), ' ', reference(resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName')), '2023-01-01').addonProfiles.azureKeyvaultSecretsProvider.identity.clientId, ' ', if(parameters('SSLEncryptionTLS'), parameters('keyVaultName'), 'KEYVAULT_NAME'), ' ', if(parameters('SSLEncryptionTLS'), parameters('certificateName'), 'CERTIFICATE_NAME'), ' ', parameters('magentoAdminEmail'), ' ', variables('magentoCurrency'), ' ', variables('magentoTimezone'))]"
+                },
+                "settings": {}
+            }
+        }
+    ],
+    "outputs": {
+        "mySqlServerHostName": {
+            "type": "string",
+            "value": "[concat(variables('mySqlServerName'), '.', variables('mySqlPrivateDnsZoneName'))]"
+        },
+        "kubernetesClusterName": {
+            "type": "string",
+            "value": "[variables('kubernetesClusterName')]"
+        },
+        "storageAccountName": {
+            "type": "string",
+            "value": "[parameters('storageAccountName')]"
+        }
+    }
+}

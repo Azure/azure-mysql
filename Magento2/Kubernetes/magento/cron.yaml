@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magento-cron
+  namespace: magento
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: magento-cron
+  template:
+    metadata:
+      labels:
+        app: magento-cron
+    spec:
+      containers:
+      - name: magento-cron
+        image: aaakarshit/magento-cron:v1.0.0
+        envFrom:
+        - configMapRef:
+            name: input-config
+        - configMapRef:
+            name: magento-config
+        - configMapRef:
+            name: magento-cron-config
+        - secretRef:
+            name: input-secrets
+        volumeMounts:
+        - name: azurefile-magento
+          mountPath: /var/www/html/mount/static
+          subPath: static
+        - name: azurefile-magento
+          mountPath: /var/www/html/mount/media
+          subPath: media
+        readinessProbe:
+          exec:
+            command: ["sh", "-c", "test -f /tmp/magento-setup-complete-${HOSTNAME}"]
+          failureThreshold: 145   # Check till 15 minutes
+          initialDelaySeconds: 180 # Start checking after 3 minutes
+          periodSeconds: 5       # Check every 5 seconds
+          successThreshold: 1    # If the file is present, it's ready
+      volumes:
+      - name: azurefile-magento
+        persistentVolumeClaim:
+          claimName: magento-pvc
+          readOnly: false

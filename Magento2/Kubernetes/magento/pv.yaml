@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: magento-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  azureFile:
+    secretName: input-secrets
+    secretNamespace: magento
+    shareName: magento
+    readOnly: false
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - mfsymlinks
+  - uid=33
+  - gid=33
+  - cache=none
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-sc

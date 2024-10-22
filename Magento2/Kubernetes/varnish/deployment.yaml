@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: varnish
+  namespace: magento
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: varnish
+  template:
+    metadata:
+      labels:
+        app: varnish
+    spec:
+      containers:
+      - name: varnish
+        image: varnish:6.0.13
+        command: ["sh", "-c", "varnishd -F -n /var/lib/varnish -f /etc/varnish/default.vcl -s ${VARNISH_STORAGE} -a :${VARNISH_LISTEN_PORT} & \
+          varnishncsa -n /var/lib/varnish -F '%h %l %u %t \"%r\" %s %b \"%{Referer}i\" \"%{User-agent}i\" %{Varnish:handling}x'"]
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+        - name: varnish-config
+          mountPath: /etc/varnish/default.vcl
+          subPath: default.vcl
+        envFrom:
+        - configMapRef:
+            name: varnish-config
+      volumes:
+        - name: varnish-config
+          configMap:
+            name: varnish-config
+            items:
+              - key: default.vcl
+                path: default.vcl

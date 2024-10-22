@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: magento-ingress
+  namespace: magento
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
+    nginx.org/proxy-buffers: "4 256k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "256k"
+    nginx.org/proxy-connect-timeout: "60s"
+    nginx.org/proxy-read-timeout: "60s"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  ingressClassName: nginx 
+  tls:
+  - hosts:
+    - __FQDN__
+    secretName: magento-secret
+  rules:
+  - host: __FQDN__
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: __SERVICE_NAME__
+            port:
+              number: __SERVICE_PORT__

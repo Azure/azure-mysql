@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: magento-config
+  namespace: magento
+data:
+  PHP_VERSION: "8.3"
+  MAGENTO_PORT: "8080"
+  MAGENTO_DATABASE_NAME: "magento"
+  MAGENTO_SEARCH_ENGINE: "elasticsearch7"
+  ELASTICSEARCH_HOST: elasticsearch-service.magento.svc.cluster.local
+  ELASTICSEARCH_PORT: "9200"
+  MAGENTO_ADMIN_FIRSTNAME: "Admin"
+  MAGENTO_ADMIN_LASTNAME: "User"
+  MAGENTO_ADMIN_FRONTNAME: "admin"
+  MAGENTO_LANGUAGE: "en_US"
+  MAGENTO_USE_REWRITES: "1"
+  SESSION_BACKEND: "redis"
+  SESSION_REDIS_SERVER_HOST: redis-service.magento.svc.cluster.local
+  SESSION_REDIS_PORT: "6379"
+  SESSION_REDIS_DATABASE: "2"
+  SESSION_REDIS_LOG_LEVEL: "4"
+  MAGENTO_FORCE_INSTALL: "false"
+  MAGENTO_DEPLOY_SAMPLE_DATA: "false"
+  MAGENTO_REMOVE_SAMPLE_DATA: "false"
+  MAGENTO_DISABLE_2FA: "true"
+  VARNISH_LISTEN_HOST: "varnish-service.magento.svc.cluster.local"
+  VARNISH_LISTEN_PORT: "8081"
+  VARNISH_BACKEND_HOST: magento-service.magento.svc.cluster.local
+  VARNISH_BACKEND_PORT: "8080"
+  VARNISH_STORAGE: "malloc,256M"
+  default.conf: |
+    # Example configuration:
+    upstream fastcgi_backend {
+      # use tcp connection
+      # server  127.0.0.1:9000;
+      # or socket
+      server   unix:/run/php/php8.3-fpm.sock;
+    }
+    server {
+      listen 8080;
+      server_name magento-service.magento.svc.cluster.local;
+      set $MAGE_ROOT /var/www/html/magento2;
+      set $MAGE_DEBUG_SHOW_ARGS 0;
+
+      include /usr/local/bin/nginx.conf.sample;
+    }
+
+    # Optional override of deployment mode. We recommend you use the
+    # command 'bin/magento deploy:mode:set' to switch modes instead.
+    #
+    # set $MAGE_MODE default; # or production or developer
+    #
+    # If you set MAGE_MODE in server config, you must pass the variable into the
+    # PHP entry point blocks, which are indicated below. You can pass
+    # it in using:
+    #
+    # fastcgi_param  MAGE_MODE $MAGE_MODE;
+    #
+    # In production mode, you should uncomment the 'expires' directive in the /static/ location block
+
+    # Modules can be loaded only at the very beginning of the Nginx config file, please move the line below to the main config file
+    # load_module /etc/nginx/modules/ngx_http_image_filter_module.so;
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: magento-cron-config
+  namespace: magento
+data:
+  CONFIG__DEFAULT__SYSTEM__CRON__INDEX__USE_SEPARATE_PROCESS: "0"
+  CONFIG__DEFAULT__SYSTEM__CRON__DEFAULT__USE_SEPARATE_PROCESS: "0"
+  CONFIG__DEFAULT__SYSTEM__CRON__CONSUMERS__USE_SEPARATE_PROCESS: "0"
+  CONFIG__DEFAULT__SYSTEM__CRON__DDG_AUTOMATION__USE_SEPARATE_PROCESS: "0"
