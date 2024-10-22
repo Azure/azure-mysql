@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  azureFile:
+    secretName: input-secrets
+    secretNamespace: magento
+    shareName: elasticsearch
+    readOnly: false
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - mfsymlinks
+  - uid=1000
+  - gid=1000
+  - cache=none
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-sc

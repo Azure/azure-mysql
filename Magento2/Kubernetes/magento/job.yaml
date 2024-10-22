@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: magento-setup-job
+  namespace: magento
+spec:
+  template:
+    metadata:
+      labels:
+        app: magento-setup-job
+    spec:
+      containers:
+        - name: magento-setup-job
+          image: aaakarshit/magento-setup-job:v1.0.0
+          envFrom:
+            - configMapRef:
+                name: magento-config
+            - configMapRef:
+                name: input-config
+            - secretRef:
+                name: input-secrets
+          volumeMounts:
+            - name: azurefile-magento
+              mountPath: /var/www/html/mount/static
+              subPath: static
+            - name: azurefile-magento
+              mountPath: /var/www/html/mount/media
+              subPath: media
+      restartPolicy: Never
+      volumes:
+        - name: azurefile-magento
+          persistentVolumeClaim:
+            claimName: magento-pvc
+            readOnly: false
+        - name: magento-config
+          configMap:
+            name: magento-config
+            items:
+              - key: default.conf
+                path: default.conf

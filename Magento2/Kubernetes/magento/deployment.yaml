@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magento-server
+  namespace: magento
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magento-server
+  template:
+    metadata:
+      labels:
+        app: magento-server
+    spec:
+      containers:
+      - name: magento-server
+        image: aaakarshit/magento-server:v1.0.0
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: magento-config
+        - configMapRef:
+            name: input-config
+        - secretRef:
+            name: input-secrets
+        volumeMounts:
+        - name: azurefile-magento
+          mountPath: /var/www/html/mount/static
+          subPath: static
+        - name: azurefile-magento
+          mountPath: /var/www/html/mount/media
+          subPath: media
+        - name: magento-config
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+        readinessProbe:
+          exec:
+            command: ["sh", "-c", "test -f /tmp/magento-setup-complete-${HOSTNAME}"]
+          failureThreshold: 145   # Check till 15 minutes
+          initialDelaySeconds: 180 # Start checking after 3 minutes
+          periodSeconds: 5       # Check every 5 seconds
+          successThreshold: 1    # If the file is present, it's ready
+      volumes:
+      - name: azurefile-magento
+        persistentVolumeClaim:
+          claimName: magento-pvc
+          readOnly: false
+      - name: magento-config
+        configMap:
+          name: magento-config
+          items:
+          - key: default.conf
+            path: default.conf
