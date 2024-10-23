@@ -149,7 +149,7 @@ echo "Deploying to AKS Cluster..."
 
 # Defining deployment file URLs
 echo "Deploying YAML configurations..."
-file_base_url="https://raw.githubusercontent.com/aakagarwal/azure-mysql/refs/heads/master/Magento2/Kubernetes"
+file_base_url="https://raw.githubusercontent.com/Azure/azure-mysql/refs/heads/master/Magento2/Kubernetes"
 
 # Create the namespace
 echo "Creating namespace..."
