@@ -22,18 +22,17 @@ The ARM template will create and deploy the following resources in your Azure ac
 ![Magento2 solution architecture](images/magento2-architecture.png)
 
 * A virtual network with a subnet and a network security group.
-* A public IP address and a load balancer.
-* A MySQL server and a database for Magento Open Source.
-* A Redis cache for Magento Open-Source session and page caching.
-* A storage account for Magento Open-Source media files.
-* An application insights instance for Magento Open-Source monitoring and analytics.
-* A deployment with a specified number of pods that run Magento Open-Source containers.
-* A service that exposes the Magento Open-Source pods to the internet.
-* A persistent volume claim and a storage class that provide persistent storage for Magento Open-Source data.
 * A secret that stores the Magento Open-Source credentials and encryption keys.
+* A public IP address and a load balancer.
 * An Azure Database for MySQL – Flexible Server PaaS database for Magento Open Source, the best place for MySQL on Azure.
-* An Elasticsearch subchart that deploys an Elasticsearch cluster for Magento Open-Source search functionality.
-* A Redis subchart that deploys a Redis server for Magento Open-Source session and page caching.
+* A Redis cache for Magento Open-Source session and page caching.
+* A storage account for Magento Open-Source media files. A persistent volume claim and a storage class that provide persistent storage for Magento Open-Source data.
+* Azure Content Delivery Network (CDN) to store static files, CSS, scripts, images. (Requires SSL/TLS enabled)
+* A deployment of Azure Kubernetes Services (AKS) with:
+    * A specified number of pods that run Magento Open-Source containers.
+    * An Elasticsearch subchart that deploys an Elasticsearch cluster for Magento Open-Source search functionality.
+    * A Redis subchart that deploys a Redis server for Magento Open-Source session and page caching.
+* A service that exposes the Magento Open-Source pods to the internet.
 
 ## Deployment Steps
 The following pre-requisites need to be configured before deploying the ARM template. 
@@ -56,7 +55,9 @@ Save the output from the above command as you need to provide this information t
 ## HTTPS using SSL 
 If using SSL encryption for users to reach the Magento E-Commerce site via HTTPS: 
 1. Create key vault in the same resource group created initially.
-2. Import your certificates for TLS to the same key vault. 
+2. Import your certificates for TLS to the same key vault.
+
+**NOTE -** Make sure to turn on SSL/TLS to use Azure CDN.
 
 ## Deploy the ARM template
 To deploy this ARM template, open the Azure CLI, and then run the following command: 
