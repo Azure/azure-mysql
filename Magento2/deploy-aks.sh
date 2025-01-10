@@ -213,7 +213,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Create CDN Endpoint for static
   echo "Creating CDN Endpoint for static..."
   sudo az cdn endpoint create \
-    --endpoint-name magento-static \
+    --endpoint-name magento1-static \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --origin-host-header $cdn_origin \
@@ -224,7 +224,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   sudo az cdn endpoint rule add \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
-    --name magento-static \
+    --name magento1-static \
     --rule-name Global \
     --order 0 \
     --action-name ModifyResponseHeader \
@@ -235,7 +235,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Get CDN URL for static
   echo "Getting CDN URL for static..."
   CDN_STATIC_ENDPOINT_HOST=$(sudo az cdn endpoint show \
-    --endpoint-name magento-static \
+    --endpoint-name magento1-static \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --query "hostName" \
@@ -244,7 +244,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Create CDN Endpoint for media
   echo "Creating CDN Endpoint for media..."
   sudo az cdn endpoint create \
-    --endpoint-name magento-media \
+    --endpoint-name magento1-media \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --origin-host-header $cdn_origin \
@@ -255,7 +255,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   sudo az cdn endpoint rule add \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
-    --name magento-media \
+    --name magento1-media \
     --rule-name Global \
     --order 0 \
     --action-name ModifyResponseHeader \
@@ -266,7 +266,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Get CDN URL for media
   echo "Getting CDN URL for media..."
   CDN_MEDIA_ENDPOINT_HOST=$(sudo az cdn endpoint show \
-    --endpoint-name magento-media \
+    --endpoint-name magento1-media \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --query "hostName" \
