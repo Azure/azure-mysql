@@ -648,7 +648,7 @@
             "condition": "[parameters('azureCDN')]",
             "name": "[variables('cdnProfileName')]",
             "type": "Microsoft.Cdn/profiles",
-            "location": "[resourceGroup().location]",
+            "location": "global",
             "apiVersion": "2023-05-01",
             "sku": {
                 "name": "[parameters('SKUAzureCDN')]"
@@ -936,12 +936,12 @@
                 "type": "CustomScript",
                 "typeHandlerVersion": "2.1",
                 "autoUpgradeMinorVersion": true,
-                "ForceUpdateTag": "1.0",
+                "ForceUpdateTag": "1.1",
                 "protectedSettings": {
                     "fileUris": [
                         "https://raw.githubusercontent.com/Azure/azure-mysql/refs/heads/master/Magento2/deploy-aks.sh"
                     ],
-                    "commandToExecute": "[concat('bash deploy-aks.sh ', variables('azureSubscriptionId'), ' ', variables('azureResourceGroup'), ' ', parameters('servicePrincipalAppId'), ' ', parameters('servicePrincipalPassword'), ' ', variables('tenentId'), ' ', parameters('composerUsername'), ' ', parameters('composerPassword'), ' ', concat(variables('mySqlServerName'), '.', variables('mySqlPrivateDnsZoneName')), ' ', parameters('MYSQLAdministratorLogin'), ' ', parameters('MYSQLAdministratorPassword'), ' ',  variables('kubernetesClusterName'), ' ', parameters('storageAccountName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2022-09-01').keys[0].value, ' ', parameters('magentoAdminUsername'), ' ', parameters('magentoAdminPassword'), ' ', variables('virtualMachineName'), ' ', if(not(empty(parameters('externalFQDN'))), parameters('externalFQDN'), 'EXTERNAL_FQDN'), ' ', variables('cdnProfileName'), ' ', parameters('redisCache'), ' ', parameters('varnishCache'), ' ', parameters('azureCDN'), ' ', parameters('SSLEncryptionTLS'), ' ', reference(resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName')), '2023-01-01').addonProfiles.azureKeyvaultSecretsProvider.identity.clientId, ' ', if(parameters('SSLEncryptionTLS'), parameters('keyVaultName'), 'KEYVAULT_NAME'), ' ', if(parameters('SSLEncryptionTLS'), parameters('certificateName'), 'CERTIFICATE_NAME'), ' ', parameters('magentoAdminEmail'), ' ', variables('magentoCurrency'), ' ', variables('magentoTimezone'))]"
+                    "commandToExecute": "[concat('bash deploy-aks.sh ', variables('azureSubscriptionId'), ' ', variables('azureResourceGroup'), ' ', parameters('servicePrincipalAppId'), ' ', parameters('servicePrincipalPassword'), ' ', variables('tenentId'), ' ', parameters('composerUsername'), ' ', parameters('composerPassword'), ' ', concat(variables('mySqlServerName'), '.', variables('mySqlPrivateDnsZoneName')), ' ', parameters('MYSQLAdministratorLogin'), ' ', parameters('MYSQLAdministratorPassword'), ' ',  variables('kubernetesClusterName'), ' ', parameters('storageAccountName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2022-09-01').keys[0].value, ' ', parameters('magentoAdminUsername'), ' ', parameters('magentoAdminPassword'), ' ', variables('virtualMachineName'), ' ', if(not(empty(parameters('externalFQDN'))), parameters('externalFQDN'), 'EXTERNAL_FQDN'), ' ', variables('cdnProfileName'), ' ', parameters('redisCache'), ' ', parameters('varnishCache'), ' ', parameters('azureCDN'), ' ', parameters('SSLEncryptionTLS'), ' ', reference(resourceId('Microsoft.ContainerService/managedClusters', variables('kubernetesClusterName')), '2023-01-01').addonProfiles.azureKeyvaultSecretsProvider.identity.clientId, ' ', if(parameters('SSLEncryptionTLS'), parameters('keyVaultName'), 'KEYVAULT_NAME'), ' ', if(parameters('SSLEncryptionTLS'), parameters('certificateName'), 'CERTIFICATE_NAME'), ' ', parameters('magentoAdminEmail'), ' ', variables('magentoCurrency'), ' ', variables('magentoTimezone'), ' ', variables('uniqueSuffix'))]"
                 },
                 "settings": {}
             }
