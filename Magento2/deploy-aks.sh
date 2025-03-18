@@ -52,6 +52,7 @@ CERTIFICATE_NAME=${25}
 MAGENTO_ADMIN_EMAIL=${26}
 MAGENTO_CURRENCY=${27}
 MAGENTO_TIMEZONE=${28}
+UNIQUE_SUFFIX=${29}
 
 # Printing all parameters
 echo "AZURE_SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID"
@@ -82,6 +83,7 @@ echo "CERTIFICATE_NAME: $CERTIFICATE_NAME"
 echo "MAGENTO_ADMIN_EMAIL: $MAGENTO_ADMIN_EMAIL"
 echo "MAGENTO_CURRENCY: $MAGENTO_CURRENCY"
 echo "MAGENTO_TIMEZONE: $MAGENTO_TIMEZONE"
+echo "UNIQUE_SUFFIX: $UNIQUE_SUFFIX"
 
 echo "External FQDN: $EXTERNAL_FQDN"
 # Mocking External FQDN (if not provided)
@@ -213,18 +215,19 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Create CDN Endpoint for static
   echo "Creating CDN Endpoint for static..."
   sudo az cdn endpoint create \
-    --endpoint-name magento-static \
+    --endpoint-name "magento-static-$UNIQUE_SUFFIX" \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --origin-host-header $cdn_origin \
-    --origin $cdn_origin
+    --origin $cdn_origin \
+    --location global
 
   # Create CDN Endpoint rule for static
   echo "Creating CDN Endpoint rule for static..."
   sudo az cdn endpoint rule add \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
-    --name magento-static \
+    --name "magento-static-$UNIQUE_SUFFIX" \
     --rule-name Global \
     --order 0 \
     --action-name ModifyResponseHeader \
@@ -235,7 +238,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Get CDN URL for static
   echo "Getting CDN URL for static..."
   CDN_STATIC_ENDPOINT_HOST=$(sudo az cdn endpoint show \
-    --endpoint-name magento-static \
+    --endpoint-name "magento-static-$UNIQUE_SUFFIX" \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --query "hostName" \
@@ -244,18 +247,19 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Create CDN Endpoint for media
   echo "Creating CDN Endpoint for media..."
   sudo az cdn endpoint create \
-    --endpoint-name magento-media \
+    --endpoint-name "magento-media-$UNIQUE_SUFFIX" \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --origin-host-header $cdn_origin \
-    --origin $cdn_origin
+    --origin $cdn_origin \
+    --location global
 
   # Create CDN Endpoint rule for media
   echo "Creating CDN Endpoint rule for media..."
   sudo az cdn endpoint rule add \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
-    --name magento-media \
+    --name "magento-media-$UNIQUE_SUFFIX" \
     --rule-name Global \
     --order 0 \
     --action-name ModifyResponseHeader \
@@ -266,7 +270,7 @@ if [ "${CDN_SWITCH}" = "true" ] || [ "${CDN_SWITCH}" = "True" ]; then
   # Get CDN URL for media
   echo "Getting CDN URL for media..."
   CDN_MEDIA_ENDPOINT_HOST=$(sudo az cdn endpoint show \
-    --endpoint-name magento-media \
+    --endpoint-name "magento-media-$UNIQUE_SUFFIX" \
     --profile-name $CDN_PROFILE_NAME \
     --resource-group $AZURE_RESOURCE_GROUP \
     --query "hostName" \
