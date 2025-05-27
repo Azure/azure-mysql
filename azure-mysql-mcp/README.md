@@ -57,9 +57,9 @@ _*Available when using Microsoft Entra authentication method_
 4. Install the dependencies:
 
     ```
-    pip install mcp[cli]
-    pip install mysql-connector-python[binary]
-    pip install azure-mgmt-mysql-flexible-server
+    pip install mcp
+    pip install mysql-connector-python
+    pip install azure-mgmt-mysqlflexibleservers
     pip install azure-identity
     ```
 
@@ -80,7 +80,7 @@ _*Available when using Microsoft Entra authentication method_
                 "env": {
                     "MYSQLHOST": "<Fully qualified name of your Azure Database for MySQL instance>",
                     "MYSQLUSER": "<Your Azure Database for MySQL username>",
-                    "MYSQLPASSWORD": "<Your password>"
+                    "MYSQLPASSWORD": "<Your Azure Database for MySQL password>"
                 }
             }        
         }
@@ -111,7 +111,7 @@ You are now all set to start interacting with your data using natural language q
                     "env": {
                         "MYSQLHOST": "<Fully qualified name of your Azure Database for MySQL instance>",
                         "MYSQLUSER": "<Your Azure Database for MySQL username>",
-                        "MYSQLPASSWORD": "<Your password>"
+                        "MYSQLPASSWORD": "<Your Azure Database for MySQL password>"
                     }
                 }
             }
